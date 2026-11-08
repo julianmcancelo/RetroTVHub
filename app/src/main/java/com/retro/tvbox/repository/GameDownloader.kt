@@ -60,10 +60,15 @@ class GameDownloader(
 
         // 1. Verificar si ya existe en caché antes de solicitar red
         val finalTargetRom = cacheManager.getRomFile(game.id, game.expectedExtension)
-        if (finalTargetRom.exists() && finalTargetRom.length() > 0) {
-            cacheManager.markRomAccessed(game.id, finalTargetRom)
-            emit(DownloadProgress.Completed(finalTargetRom))
-            return@flow
+        if (finalTargetRom.exists()) {
+            if (finalTargetRom.length() > 1024) {
+                cacheManager.markRomAccessed(game.id, finalTargetRom)
+                emit(DownloadProgress.Completed(finalTargetRom))
+                return@flow
+            } else {
+                // Descartar archivo incompleto o corrupto previo
+                finalTargetRom.delete()
+            }
         }
 
         // Si la URL es de prueba o protocolo ficticio sin red disponible, generar stub local funcional
@@ -171,17 +176,7 @@ class GameDownloader(
         } catch (e: Exception) {
             Log.e(tag, "Fallo durante la descarga de ${game.title}", e)
             if (tempDownloadFile.exists()) tempDownloadFile.delete()
-
-            // Fallback para pruebas si no hay conexión externa: crear ROM ficticia mínima válida
-            if (!finalTargetRom.exists()) {
-                val fallbackCreated = createMockRomFile(finalTargetRom, game)
-                if (fallbackCreated) {
-                    cacheManager.markRomAccessed(game.id, finalTargetRom)
-                    emit(DownloadProgress.Completed(finalTargetRom))
-                    return@flow
-                }
-            }
-
+            if (finalTargetRom.exists() && finalTargetRom.length() <= 1024) finalTargetRom.delete()
             emit(DownloadProgress.Failed(e.message ?: "Error desconocido en descarga"))
         }
     }.flowOn(Dispatchers.IO)
@@ -235,17 +230,5 @@ class GameDownloader(
             }
         }
         return digest.digest().joinToString("") { "%02x".format(it) }
-    }
-
-    private fun createMockRomFile(file: File, game: GameEntry): Boolean {
-        return try {
-            FileOutputStream(file).use { fos ->
-                fos.write("RETRO_ROM_DATA_${game.id}_${game.consoleId}".toByteArray())
-                fos.flush()
-            }
-            true
-        } catch (e: Exception) {
-            false
-        }
     }
 }

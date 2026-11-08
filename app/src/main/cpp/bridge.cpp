@@ -69,12 +69,40 @@ static bool core_environment_cb(unsigned cmd, void *data) {
         }
 
         case RETRO_ENVIRONMENT_GET_CAN_DUPE:
-            *(bool *)data = true;
+            if (data) *(bool *)data = true;
             return true;
 
         case RETRO_ENVIRONMENT_GET_VARIABLE: {
             struct retro_variable *var = (struct retro_variable *)data;
-            var->value = NULL;
+            if (var) {
+                var->value = NULL;
+            }
+            return false;
+        }
+
+        case RETRO_ENVIRONMENT_SET_VARIABLES:
+            return true;
+
+        case RETRO_ENVIRONMENT_GET_VARIABLE_UPDATE: {
+            if (data) *(bool *)data = false;
+            return true;
+        }
+
+        case RETRO_ENVIRONMENT_GET_CORE_OPTIONS_VERSION: {
+            if (data) *(unsigned *)data = 0;
+            return true;
+        }
+
+        case RETRO_ENVIRONMENT_GET_LANGUAGE: {
+            if (data) *(unsigned *)data = 0;
+            return true;
+        }
+
+        case RETRO_ENVIRONMENT_GET_INPUT_BITMASKS:
+            return true;
+
+        case RETRO_ENVIRONMENT_GET_AUDIO_VIDEO_ENABLE: {
+            if (data) *(int *)data = 1 | 2;
             return true;
         }
 
@@ -302,32 +330,47 @@ Java_com_retro_tvbox_core_LibretroBridge_nativeLoadGame(JNIEnv *env, jobject thi
     if (!p_retro_load_game) return JNI_FALSE;
 
     const char *rom_path = env->GetStringUTFChars(romPath, NULL);
-    FILE *f = fopen(rom_path, "rb");
-    if (!f) {
-        LOGE("No se pudo abrir archivo ROM: %s", rom_path);
-        env->ReleaseStringUTFChars(romPath, rom_path);
-        return JNI_FALSE;
+
+    struct retro_system_info sys_info = {0};
+    if (p_retro_get_system_info) {
+        p_retro_get_system_info(&sys_info);
     }
-
-    fseek(f, 0, SEEK_END);
-    g_rom_size = ftell(f);
-    fseek(f, 0, SEEK_SET);
-
-    if (g_rom_data) free(g_rom_data);
-    g_rom_data = (uint8_t *)malloc(g_rom_size);
-    if (!g_rom_data) {
-        fclose(f);
-        env->ReleaseStringUTFChars(romPath, rom_path);
-        return JNI_FALSE;
-    }
-
-    fread(g_rom_data, 1, g_rom_size, f);
-    fclose(f);
 
     struct retro_game_info game_info = {0};
     game_info.path = rom_path;
-    game_info.data = g_rom_data;
-    game_info.size = g_rom_size;
+
+    if (sys_info.need_fullpath) {
+        // Cores disc-based o arcade que requieren ruta física directa
+        game_info.data = NULL;
+        game_info.size = 0;
+        LOGI("Cargando juego via need_fullpath: %s", rom_path);
+    } else {
+        FILE *f = fopen(rom_path, "rb");
+        if (!f) {
+            LOGE("No se pudo abrir archivo ROM: %s", rom_path);
+            env->ReleaseStringUTFChars(romPath, rom_path);
+            return JNI_FALSE;
+        }
+
+        fseek(f, 0, SEEK_END);
+        g_rom_size = ftell(f);
+        fseek(f, 0, SEEK_SET);
+
+        if (g_rom_data) free(g_rom_data);
+        g_rom_data = (uint8_t *)malloc(g_rom_size);
+        if (!g_rom_data) {
+            fclose(f);
+            env->ReleaseStringUTFChars(romPath, rom_path);
+            return JNI_FALSE;
+        }
+
+        fread(g_rom_data, 1, g_rom_size, f);
+        fclose(f);
+
+        game_info.data = g_rom_data;
+        game_info.size = g_rom_size;
+        LOGI("Cargando juego en memoria: %zu bytes", g_rom_size);
+    }
 
     bool loaded = p_retro_load_game(&game_info);
     env->ReleaseStringUTFChars(romPath, rom_path);

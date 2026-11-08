@@ -35,6 +35,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -52,12 +53,16 @@ import com.retro.tvbox.core.BiosManager
 import com.retro.tvbox.repository.CacheManager
 import com.retro.tvbox.repository.ConsoleManifest
 import com.retro.tvbox.repository.RepositoryClient
+import com.retro.tvbox.repository.UpdateInfo
+import com.retro.tvbox.repository.UpdateManager
 import com.retro.tvbox.ui.components.BiosSettingsDialog
 import com.retro.tvbox.ui.components.CacheSettingsDialog
 import com.retro.tvbox.ui.components.Ps5TopBar
 import com.retro.tvbox.ui.components.QrCodeDialog
+import com.retro.tvbox.ui.components.UpdateDialog
 import com.retro.tvbox.ui.theme.BackgroundDark
 import com.retro.tvbox.ui.theme.FocusYellow
+import kotlinx.coroutines.launch
 import com.retro.tvbox.ui.theme.NeonCyan
 import com.retro.tvbox.ui.theme.NeonPink
 import com.retro.tvbox.ui.theme.SurfaceCard
@@ -85,6 +90,13 @@ fun HomeScreen(
     var showCacheDialog by remember { mutableStateOf(false) }
     var focusedConsole by remember { mutableStateOf<ConsoleManifest?>(null) }
 
+    val context = LocalContext.current
+    val updateManager = remember { UpdateManager(context) }
+    var availableUpdate by remember { mutableStateOf<UpdateInfo?>(null) }
+    var isDownloadingUpdate by remember { mutableStateOf(false) }
+    var updateDownloadProgress by remember { mutableStateOf<Float?>(null) }
+    val coroutineScope = rememberCoroutineScope()
+
     val firstItemFocus = remember { FocusRequester() }
     val listState = rememberLazyListState()
 
@@ -94,6 +106,14 @@ fun HomeScreen(
         consoles = index.consoles
         if (consoles.isNotEmpty()) {
             focusedConsole = consoles.first()
+        }
+
+        // Chequeo asíncrono no bloqueante de actualizaciones OTA
+        try {
+            val updateRes = updateManager.checkForUpdates()
+            availableUpdate = updateRes.getOrNull()
+        } catch (_: Exception) {
+            // Silencioso si no hay conexión o rate limit
         }
     }
 
@@ -156,7 +176,6 @@ fun HomeScreen(
                 )
         )
 
-        val context = LocalContext.current
         val isTvDevice = remember { context.packageManager.hasSystemFeature(android.content.pm.PackageManager.FEATURE_LEANBACK) }
         val horizontalPadding = if (isTvDevice) 40.dp else 16.dp
         val verticalPadding = if (isTvDevice) 24.dp else 12.dp
@@ -306,6 +325,25 @@ fun HomeScreen(
             CacheSettingsDialog(
                 cacheManager = cacheManager,
                 onDismissRequest = { showCacheDialog = false }
+            )
+        }
+
+        // OTA Update Modal
+        availableUpdate?.let { update ->
+            UpdateDialog(
+                updateInfo = update,
+                downloadProgress = updateDownloadProgress,
+                isDownloading = isDownloadingUpdate,
+                onConfirmUpdate = {
+                    isDownloadingUpdate = true
+                    coroutineScope.launch {
+                        updateManager.downloadAndInstallUpdate(update) { progress ->
+                            updateDownloadProgress = progress
+                        }
+                        isDownloadingUpdate = false
+                    }
+                },
+                onDismiss = { availableUpdate = null }
             )
         }
     }

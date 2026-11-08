@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
     <cache-path name="temp_roms" path="temp_roms/" />
+    <cache-path name="updates" path="updates/" />
     <files-path name="saves" path="saves/" />
     <files-path name="legacy_saves" path="user_saves/" />
     <files-path name="cards" path="memcards/" />

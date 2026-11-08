@@ -12,6 +12,7 @@ import android.view.SurfaceView
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
@@ -19,6 +20,9 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.focusable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -38,6 +42,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Memory
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.SportsEsports
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -55,8 +60,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.font.FontWeight
@@ -103,6 +114,7 @@ fun PlayerScreen(
     val inputRouter = remember { InputRouter.getInstance() }
     var activeSurfaceView by remember { mutableStateOf<SurfaceView?>(null) }
     var isSurfaceReady by remember { mutableStateOf(false) }
+    var loadError by remember { mutableStateOf<String?>(null) }
 
     // Estados de configuración de core, bios y barra de progreso estilo PS5
     var isLoadingCore by remember { mutableStateOf(true) }
@@ -160,6 +172,13 @@ fun PlayerScreen(
     // 2. Comprobación, auto-descarga de BIOS/Núcleo y ejecución a 60 FPS
     LaunchedEffect(romFile) {
         withContext(Dispatchers.IO) {
+            // 0. Verificar primero integridad básica del archivo de la ROM
+            if (!romFile.exists() || romFile.length() <= 1024) {
+                loadError = "El archivo del juego no está completo o se interrumpió la descarga. Por favor, vuelve a descargarlo."
+                isLoadingCore = false
+                return@withContext
+            }
+
             // A. Comprobar y auto-descargar BIOS si la consola lo requiere
             if (game.consoleId.equals("psx", ignoreCase = true) && !biosManager.hasRequiredBios("psx")) {
                 loadingTitle = "Descargando componentes de sistema..."
@@ -190,13 +209,21 @@ fun PlayerScreen(
             loadingMessage = "Cargando cartucho/disco y sincronizando SRAM..."
 
             val coreFile = coreManager.getCoreFile(game.consoleId)
-            if (coreFile.exists()) {
+            val initOk = if (coreFile.exists()) {
                 bridge.initCore(coreFile.absolutePath, coreManager.systemDir.absolutePath)
+            } else {
+                bridge.initCore("", coreManager.systemDir.absolutePath)
             }
 
             val sramFile = saveManager.getSaveFile(game.id)
             val sramPath = if (sramFile.exists()) sramFile.absolutePath else null
-            bridge.loadGame(romFile.absolutePath, sramPath)
+            val loadOk = bridge.loadGame(romFile.absolutePath, sramPath)
+
+            if (!initOk || !loadOk) {
+                loadError = "No se pudo iniciar el juego (${game.title}). Verifica que la descarga esté completa o intenta con otro título."
+                isLoadingCore = false
+                return@withContext
+            }
 
             isLoadingCore = false
         }
@@ -207,7 +234,7 @@ fun PlayerScreen(
             var nextFrameTime = System.nanoTime()
 
             while (isActive) {
-                if (!showInGameMenu && !isLoadingCore && isSurfaceReady && (bridge.currentState == EmulatorState.RUNNING || bridge.currentState == EmulatorState.GAME_LOADED)) {
+                if (loadError == null && !showInGameMenu && !isLoadingCore && isSurfaceReady && (bridge.currentState == EmulatorState.RUNNING || bridge.currentState == EmulatorState.GAME_LOADED)) {
                     bridge.stepFrame()
                 }
 
@@ -292,7 +319,7 @@ fun PlayerScreen(
         )
 
         // Overlay elegante estilo PlayStation 5 ("Descargando motor de emulación...")
-        if (isLoadingCore) {
+        if (isLoadingCore && loadError == null) {
             Ps5LoadingOverlay(
                 title = loadingTitle,
                 subtitle = coreManager.getCoreDescription(game.consoleId),
@@ -301,36 +328,35 @@ fun PlayerScreen(
             )
         }
 
+        // Overlay elegante estilo PlayStation 5 en caso de error al cargar el juego
+        if (loadError != null) {
+            Ps5ErrorOverlay(
+                title = "No se pudo iniciar el juego",
+                description = loadError ?: "",
+                onBackToCatalog = onExitGame,
+                onClearCacheAndExit = {
+                    cacheManager.purgeOnExit(game.id)
+                    if (romFile.exists()) {
+                        try {
+                            romFile.delete()
+                        } catch (_: Exception) {}
+                    }
+                    onExitGame()
+                }
+            )
+        }
+
         // Controles táctiles en pantalla para móviles/tablets
-        if (isTouchDevice && !isLoadingCore && !showInGameMenu) {
+        if (isTouchDevice && !isLoadingCore && loadError == null && !showInGameMenu) {
             TouchControlsOverlay(
                 isPlayStationLayout = game.consoleId.equals("psx", ignoreCase = true) || game.consoleId.equals("ps2", ignoreCase = true),
-                inputRouter = inputRouter
+                inputRouter = inputRouter,
+                onOpenMenu = {
+                    persistSram("InGameMenu Pausa (Táctil)")
+                    bridge.pause()
+                    showInGameMenu = true
+                }
             )
-
-            // Botón flotante de menú rápido en esquina superior derecha
-            Box(
-                modifier = Modifier
-                    .align(Alignment.TopEnd)
-                    .padding(16.dp)
-                    .size(44.dp)
-                    .clip(CircleShape)
-                    .background(Color.Black.copy(alpha = 0.65f))
-                    .border(1.dp, NeonPink.copy(alpha = 0.8f), CircleShape)
-                    .clickable {
-                        persistSram("InGameMenu Pausa (Táctil)")
-                        bridge.pause()
-                        showInGameMenu = true
-                    },
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Menu,
-                    contentDescription = "Menú",
-                    tint = Color.White,
-                    modifier = Modifier.size(24.dp)
-                )
-            }
         }
 
         // Menú OSD flotante en pausa con guardado de partidas y estados
@@ -544,6 +570,193 @@ private fun Ps5LoadingOverlay(
                 }
             }
         }
+    }
+}
+
+/**
+ * Diálogo / Overlay elegante estilo PlayStation 5 para fallos de carga o ROM corrupta.
+ * Ofrece opciones claras enfocables con D-Pad de TV o táctil en celular.
+ */
+@Composable
+private fun Ps5ErrorOverlay(
+    title: String,
+    description: String,
+    onBackToCatalog: () -> Unit,
+    onClearCacheAndExit: () -> Unit
+) {
+    val firstFocus = remember { FocusRequester() }
+
+    LaunchedEffect(Unit) {
+        try {
+            firstFocus.requestFocus()
+        } catch (_: Exception) {}
+    }
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                Brush.radialGradient(
+                    colors = listOf(
+                        Color(0xFF200B15).copy(alpha = 0.96f),
+                        Color(0xFF0D0F18),
+                        Color.Black
+                    )
+                )
+            )
+            .padding(24.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Card(
+            shape = RoundedCornerShape(24.dp),
+            colors = CardDefaults.cardColors(containerColor = Color(0xFF101726).copy(alpha = 0.94f)),
+            border = BorderStroke(
+                1.5.dp,
+                Brush.horizontalGradient(
+                    listOf(
+                        Color(0xFFFF3366).copy(alpha = 0.8f),
+                        Color(0xFF7928CA).copy(alpha = 0.8f)
+                    )
+                )
+            ),
+            modifier = Modifier
+                .widthIn(max = 520.dp)
+                .fillMaxWidth()
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(32.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(18.dp)
+            ) {
+                // Ícono de advertencia pulsante estilo PS5
+                Box(
+                    modifier = Modifier
+                        .size(68.dp)
+                        .clip(CircleShape)
+                        .background(
+                            Brush.radialGradient(
+                                listOf(
+                                    Color(0xFFFF3366).copy(alpha = 0.25f),
+                                    Color.Transparent
+                                )
+                            )
+                        )
+                        .border(1.5.dp, Color(0xFFFF3366).copy(alpha = 0.7f), CircleShape),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Warning,
+                        contentDescription = null,
+                        tint = Color(0xFFFF3366),
+                        modifier = Modifier.size(36.dp)
+                    )
+                }
+
+                // Título principal de error
+                Text(
+                    text = title,
+                    color = Color.White,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Black,
+                    letterSpacing = 0.4.sp
+                )
+
+                // Descripción detallada del problema
+                Text(
+                    text = description,
+                    color = Color(0xFF94A3B8),
+                    fontSize = 14.sp,
+                    lineHeight = 20.sp,
+                    fontWeight = FontWeight.Normal,
+                    modifier = Modifier.padding(horizontal = 8.dp)
+                )
+
+                Spacer(modifier = Modifier.height(4.dp))
+
+                // Acciones enfocables con el control remoto (D-Pad)
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    Ps5DialogButton(
+                        text = "Volver al Catálogo",
+                        isPrimary = true,
+                        focusRequester = firstFocus,
+                        onClick = onBackToCatalog
+                    )
+
+                    Ps5DialogButton(
+                        text = "Borrar Caché Corrupta y Salir",
+                        isPrimary = false,
+                        onClick = onClearCacheAndExit
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun Ps5DialogButton(
+    text: String,
+    isPrimary: Boolean,
+    focusRequester: FocusRequester? = null,
+    onClick: () -> Unit
+) {
+    val interactionSource = remember { MutableInteractionSource() }
+    val isFocused by interactionSource.collectIsFocusedAsState()
+
+    val scale by animateFloatAsState(
+        targetValue = if (isFocused) 1.04f else 1.0f,
+        label = "dialog_button_scale"
+    )
+
+    val bg = when {
+        isFocused -> if (isPrimary) Color(0xFF00E5FF) else Color(0xFFFF3366)
+        isPrimary -> Color(0xFF1E293B)
+        else -> Color(0xFF131826)
+    }
+
+    val contentColor = when {
+        isFocused -> Color.Black
+        isPrimary -> Color.White
+        else -> Color(0xFFFF6B8B)
+    }
+
+    val border = when {
+        isFocused -> Color.White
+        isPrimary -> Color(0xFF00E5FF).copy(alpha = 0.4f)
+        else -> Color(0xFFFF3366).copy(alpha = 0.35f)
+    }
+
+    Box(
+        modifier = Modifier
+            .scale(scale)
+            .fillMaxWidth()
+            .then(if (focusRequester != null) Modifier.focusRequester(focusRequester) else Modifier)
+            .focusable(interactionSource = interactionSource)
+            .clip(RoundedCornerShape(12.dp))
+            .background(bg)
+            .border(1.5.dp, border, RoundedCornerShape(12.dp))
+            .clickable(interactionSource = interactionSource, indication = null, onClick = onClick)
+            .onKeyEvent { keyEvent ->
+                if (keyEvent.key == Key.DirectionCenter || keyEvent.key == Key.Enter) {
+                    onClick()
+                    true
+                } else false
+            }
+            .padding(vertical = 12.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = text,
+            color = contentColor,
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Bold,
+            letterSpacing = 0.5.sp
+        )
     }
 }
 

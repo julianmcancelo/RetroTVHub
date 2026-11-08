@@ -60,6 +60,13 @@ class RepositoryClient(private val context: Context) {
                     Log.e(tag, "Caché de índice dañada", e2)
                 }
             }
+            try {
+                context.assets.open("catalog/index.json").use { stream ->
+                    val assetJson = stream.bufferedReader().readText()
+                    val parsed = json.decodeFromString<RepositoryIndex>(assetJson)
+                    return@withContext Result.success(parsed)
+                }
+            } catch (_: Exception) {}
             // Fallback catálogo nativo inicial de fábrica
             Result.success(createBuiltinFactoryIndex())
         }
@@ -71,6 +78,14 @@ class RepositoryClient(private val context: Context) {
     suspend fun fetchConsoleCatalog(catalogUrl: String, consoleId: String): Result<ConsoleCatalog> = withContext(Dispatchers.IO) {
         val cacheFile = File(manifestsDir, "catalog_${consoleId}.json")
 
+        // Cargar siempre catálogo base desde assets empaquetados (para evitar retraso de CDN)
+        val assetCatalog: ConsoleCatalog? = try {
+            context.assets.open("catalog/${consoleId}.json").use { stream ->
+                val assetJson = stream.bufferedReader().readText()
+                json.decodeFromString<ConsoleCatalog>(assetJson)
+            }
+        } catch (_: Exception) { null }
+
         try {
             val request = Request.Builder().url(catalogUrl).build()
             httpClient.newCall(request).execute().use { response ->
@@ -79,11 +94,20 @@ class RepositoryClient(private val context: Context) {
                 }
                 val body = response.body?.string() ?: throw IOException("Respuesta vacía")
                 val parsed = json.decodeFromString<ConsoleCatalog>(body)
-                cacheFile.writeText(body)
-                return@withContext Result.success(parsed)
+                // Si el catálogo empaquetado en assets tiene más juegos (ej. CDN aún cacheando), usar el más completo
+                val bestCatalog = if (assetCatalog != null && assetCatalog.games.size >= parsed.games.size) {
+                    assetCatalog
+                } else {
+                    parsed
+                }
+                cacheFile.writeText(json.encodeToString(ConsoleCatalog.serializer(), bestCatalog))
+                return@withContext Result.success(bestCatalog)
             }
         } catch (e: Exception) {
             Log.w(tag, "Fallo descargando catálogo para $consoleId: ${e.message}")
+            if (assetCatalog != null) {
+                return@withContext Result.success(assetCatalog)
+            }
             if (cacheFile.exists()) {
                 try {
                     val cached = json.decodeFromString<ConsoleCatalog>(cacheFile.readText())

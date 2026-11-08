@@ -52,8 +52,8 @@ class CoreManager(private val context: Context) {
             "psx" to "pcsx_rearmed",
             "ps1" to "pcsx_rearmed",
             "playstation" to "pcsx_rearmed",
-            "n64" to "mupen64plus_next",
-            "nintendo64" to "mupen64plus_next",
+            "n64" to "parallel_n64",
+            "nintendo64" to "parallel_n64",
             "gba" to "mgba",
             "gameboyadvance" to "mgba"
         )
@@ -64,7 +64,7 @@ class CoreManager(private val context: Context) {
             "nes" to "FCEUmm (Nintendo Entertainment System)",
             "genesis" to "Genesis Plus GX (Sega Genesis / Mega Drive)",
             "psx" to "PCSX-ReARMed (Sony PlayStation 1)",
-            "n64" to "Mupen64Plus-Next (Nintendo 64)",
+            "n64" to "ParaLLEl N64 (Nintendo 64)",
             "gba" to "mGBA (Game Boy Advance)"
         )
     }
@@ -114,9 +114,9 @@ class CoreManager(private val context: Context) {
     fun getBuildbotCoreCandidates(consoleId: String): List<String> {
         val coreName = getCoreName(consoleId)
         return when (coreName) {
-            "mupen64plus_next" -> listOf(
+            "parallel_n64", "mupen64plus_next" -> listOf(
+                "parallel_n64",
                 "mupen64plus_next_gles3",
-                "mupen64plus_next",
                 "mupen64plus_next_gles2"
             )
             else -> listOf(coreName)

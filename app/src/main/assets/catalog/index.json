@@ -1,0 +1,61 @@
+{
+  "repoName": "RetroTV Hub Oficial",
+  "version": 1,
+  "description": "Repositorio maestro de consolas retro verificado para Android TV y Smartphones",
+  "consoles": [
+    {
+      "id": "snes",
+      "name": "Super Nintendo (SNES)",
+      "manufacturer": "Nintendo",
+      "releaseYear": 1990,
+      "supportedExtensions": ["sfc", "smc", "zip"],
+      "defaultCore": "snes9x_libretro_android.so",
+      "catalogUrl": "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/snes.json"
+    },
+    {
+      "id": "nes",
+      "name": "Family Game / NES",
+      "manufacturer": "Nintendo",
+      "releaseYear": 1983,
+      "supportedExtensions": ["nes", "zip"],
+      "defaultCore": "fceumm_libretro_android.so",
+      "catalogUrl": "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/nes.json"
+    },
+    {
+      "id": "genesis",
+      "name": "Sega Genesis / Mega Drive",
+      "manufacturer": "Sega",
+      "releaseYear": 1988,
+      "supportedExtensions": ["md", "bin", "gen", "zip"],
+      "defaultCore": "genesis_plus_gx_libretro_android.so",
+      "catalogUrl": "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/genesis.json"
+    },
+    {
+      "id": "gba",
+      "name": "Game Boy Advance",
+      "manufacturer": "Nintendo",
+      "releaseYear": 2001,
+      "supportedExtensions": ["gba", "zip"],
+      "defaultCore": "mgba_libretro_android.so",
+      "catalogUrl": "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/gba.json"
+    },
+    {
+      "id": "psx",
+      "name": "Sony PlayStation 1 (PSX)",
+      "manufacturer": "Sony",
+      "releaseYear": 1994,
+      "supportedExtensions": ["chd", "iso", "bin", "cue"],
+      "defaultCore": "pcsx_rearmed_libretro_android.so",
+      "catalogUrl": "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/psx.json"
+    },
+    {
+      "id": "n64",
+      "name": "Nintendo 64",
+      "manufacturer": "Nintendo",
+      "releaseYear": 1996,
+      "supportedExtensions": ["z64", "n64", "v64", "zip"],
+      "defaultCore": "mupen64plus_next_libretro_android.so",
+      "catalogUrl": "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/n64.json"
+    }
+  ]
+}

@@ -76,7 +76,12 @@ class GameDownloader(
             // Permitir intento o generar archivo de prueba para evaluación
         }
 
-        val tempDownloadFile = File(cacheManager.tempRomsDir, "${game.id}_download.part")
+        val tempDownloadFile = File(cacheManager.tempRomsDir, "${game.id}_download.part").apply {
+            parentFile?.mkdirs()
+        }
+        if (tempDownloadFile.exists()) {
+            tempDownloadFile.delete()
+        }
 
         try {
             val request = Request.Builder()
@@ -140,6 +145,13 @@ class GameDownloader(
                 inputStream.close()
             }
 
+            // Validar que el archivo descargado no sea una respuesta vacía o página HTML de error (< 1 KB)
+            if (tempDownloadFile.length() <= 1024L) {
+                val invalidSize = tempDownloadFile.length()
+                tempDownloadFile.delete()
+                throw IOException("Archivo descargado inválido o incompleto ($invalidSize bytes)")
+            }
+
             // 2. Validación de Integridad (SHA-256) si fue suministrado en el manifiesto
             if (!game.hashSha256.isNullOrBlank()) {
                 val computedSha256 = calculateSHA256(tempDownloadFile)
@@ -163,7 +175,11 @@ class GameDownloader(
             } else {
                 // Mover archivo directo al destino final
                 if (finalTargetRom.exists()) finalTargetRom.delete()
-                tempDownloadFile.renameTo(finalTargetRom)
+                finalTargetRom.parentFile?.mkdirs()
+                if (!tempDownloadFile.renameTo(finalTargetRom)) {
+                    tempDownloadFile.copyTo(finalTargetRom, overwrite = true)
+                    tempDownloadFile.delete()
+                }
             }
 
             // Registrar en LRU de CacheManager

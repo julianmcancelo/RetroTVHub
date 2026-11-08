@@ -1,0 +1,64 @@
+{
+  "consoleId": "n64",
+  "consoleName": "NINTENDO 64",
+  "count": 4,
+  "games": [
+    {
+      "id": "n64_sm64",
+      "consoleId": "n64",
+      "title": "Super Mario 64",
+      "fileUrl": "https://archive.org/download/super-mario-64-usa_202610/Super%20Mario%2064%20(USA).z64",
+      "isCompressed": false,
+      "expectedExtension": "z64",
+      "sizeBytes": 8388608,
+      "description": "El pionero del movimiento en 3D libre con cámara analógica. Colecciona las 120 estrellas en el castillo de Peach.",
+      "genre": "Plataformas 3D",
+      "releaseYear": 1996,
+      "maxPlayers": 1,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7v.jpg"
+    },
+    {
+      "id": "n64_mk64",
+      "consoleId": "n64",
+      "title": "Mario Kart 64",
+      "fileUrl": "https://archive.org/download/mario-kart-64-usa/Mario%20Kart%2064%20(USA).zip",
+      "isCompressed": true,
+      "internalRomName": "Mario Kart 64 (USA).z64",
+      "expectedExtension": "z64",
+      "sizeBytes": 9167963,
+      "description": "Carreras legendarias en 4 copas con caparazones azules y circuitos icónicos como Senda Arco Iris.",
+      "genre": "Carreras",
+      "releaseYear": 1996,
+      "maxPlayers": 4,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7w.jpg"
+    },
+    {
+      "id": "n64_zelda_oot",
+      "consoleId": "n64",
+      "title": "The Legend of Zelda: Ocarina of Time",
+      "fileUrl": "https://archive.org/download/the-legend-of-zelda-ocarina-of-time-usa_202409/The%20Legend%20of%20Zelda%20-%20Ocarina%20of%20Time%20(USA).z64",
+      "isCompressed": false,
+      "expectedExtension": "z64",
+      "sizeBytes": 33554432,
+      "description": "Viaja 7 años en el tiempo con la Ocarina en el juego mejor calificado de la historia de los videojuegos.",
+      "genre": "Acción / Aventura",
+      "releaseYear": 1998,
+      "maxPlayers": 1,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7x.jpg"
+    },
+    {
+      "id": "n64_starfox",
+      "consoleId": "n64",
+      "title": "Star Fox 64",
+      "fileUrl": "https://archive.org/download/star-fox-64-usa_202401/Star%20Fox%2064%20(USA).z64",
+      "isCompressed": false,
+      "expectedExtension": "z64",
+      "sizeBytes": 12582912,
+      "description": "Do a barrel roll! Pilota el Arwing junto a Fox, Falco, Peppy y Slippy para salvar el sistema Lylat de Andross.",
+      "genre": "Shooter 3D",
+      "releaseYear": 1997,
+      "maxPlayers": 4,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x86.jpg"
+    }
+  ]
+}

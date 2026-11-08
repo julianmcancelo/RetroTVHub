@@ -1,0 +1,81 @@
+{
+  "consoleId": "gba",
+  "consoleName": "GAME BOY ADVANCE",
+  "count": 5,
+  "games": [
+    {
+      "id": "gba_pokemon_emerald",
+      "consoleId": "gba",
+      "title": "Pokémon Edición Esmeralda",
+      "fileUrl": "https://archive.org/download/pokemon-emerald-version-u_202303/Pokemon%20-%20Emerald%20Version%20(U).gba",
+      "isCompressed": false,
+      "expectedExtension": "gba",
+      "sizeBytes": 16777216,
+      "description": "Recorre Hoenn, calma la furia entre Kyogre y Groudon con la ayuda de Rayquaza y conquista el Frente de Batalla.",
+      "genre": "RPG / Colección",
+      "releaseYear": 2004,
+      "maxPlayers": 1,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7p.jpg"
+    },
+    {
+      "id": "gba_zelda_minish",
+      "consoleId": "gba",
+      "title": "The Legend of Zelda: The Minish Cap",
+      "fileUrl": "https://archive.org/download/gameboy-advance-rom-legend-of-zelda-the-the-minish-cap/Legend%20of%20Zelda%2C%20The_%20The%20Minish%20Cap.zip",
+      "isCompressed": true,
+      "internalRomName": "Legend of Zelda, The - The Minish Cap (USA).gba",
+      "expectedExtension": "gba",
+      "sizeBytes": 7253236,
+      "description": "Encoge al tamaño de un Minish con el gorro parlante Ezero para resolver mazmorras ingeniosas y salvar Hyrule.",
+      "genre": "Acción / Aventura",
+      "releaseYear": 2004,
+      "maxPlayers": 1,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7q.jpg"
+    },
+    {
+      "id": "gba_metroid_fusion",
+      "consoleId": "gba",
+      "title": "Metroid Fusion",
+      "fileUrl": "https://archive.org/download/metroid-fusion-usa/Metroid%20Fusion%20(USA).zip",
+      "isCompressed": true,
+      "internalRomName": "Metroid Fusion (USA).gba",
+      "expectedExtension": "gba",
+      "sizeBytes": 8406029,
+      "description": "Samus Aran infectada con el Parásito X lucha por su supervivencia contra su clon letal SA-X en los laboratorios BSL.",
+      "genre": "Metroidvania",
+      "releaseYear": 2002,
+      "maxPlayers": 1,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7r.jpg"
+    },
+    {
+      "id": "gba_castlevania_aria",
+      "consoleId": "gba",
+      "title": "Castlevania: Aria of Sorrow",
+      "fileUrl": "https://archive.org/download/castlevania-aria-of-sorrow-usa/Castlevania%20-%20Aria%20of%20Sorrow%20(USA).zip",
+      "isCompressed": true,
+      "internalRomName": "Castlevania - Aria of Sorrow (USA).gba",
+      "expectedExtension": "gba",
+      "sizeBytes": 5200000,
+      "description": "Soma Cruz absorbe las almas de sus enemigos en el eclipse solar para desvelar la reencarnación de Drácula.",
+      "genre": "Metroidvania",
+      "releaseYear": 2003,
+      "maxPlayers": 1,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x84.jpg"
+    },
+    {
+      "id": "gba_mariokart",
+      "consoleId": "gba",
+      "title": "Mario Kart: Super Circuit",
+      "fileUrl": "https://archive.org/download/mario-kart-super-circuit-usa/Mario%20Kart%20-%20Super%20Circuit%20(USA).zip",
+      "isCompressed": true,
+      "internalRomName": "Mario Kart - Super Circuit (USA).gba",
+      "expectedExtension": "gba",
+      "sizeBytes": 2800000,
+      "description": "40 circuitos legendarios incluyendo todas las pistas de Super Nintendo remasterizadas para llevar.",
+      "genre": "Carreras",
+      "releaseYear": 2001,
+      "maxPlayers": 1,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x85.jpg"
+    }
+  ]
+}

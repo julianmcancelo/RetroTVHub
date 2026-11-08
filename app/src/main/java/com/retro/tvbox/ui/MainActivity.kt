@@ -116,6 +116,7 @@ fun AppNavigationHost(
             HomeScreen(
                 repoClient = app.repositoryClient,
                 cacheManager = app.cacheManager,
+                downloader = app.gameDownloader,
                 serverUrl = serverUrl,
                 biosManager = app.biosManager,
                 onConsoleSelected = { console ->
@@ -123,6 +124,13 @@ fun AppNavigationHost(
                 },
                 onOpenMemCards = {
                     currentScreen = TvScreen.MemCards
+                },
+                onLaunchGame = { game, romFile ->
+                    if (game.consoleId.equals("ps2", ignoreCase = true)) {
+                        onLaunchExternalPS2(game, romFile)
+                    } else {
+                        currentScreen = TvScreen.Player(game, romFile)
+                    }
                 }
             )
         }

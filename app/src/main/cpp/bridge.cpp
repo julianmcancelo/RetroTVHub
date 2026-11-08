@@ -9,6 +9,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <string.h>
+#include <stdarg.h>
 
 #define LOG_TAG "LibretroBridgeNative"
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
@@ -53,11 +54,41 @@ static bool (*p_retro_unserialize)(const void *data, size_t size) = NULL;
 static void *(*p_retro_get_memory_data)(unsigned id) = NULL;
 static size_t (*p_retro_get_memory_size)(unsigned id) = NULL;
 
+// Libretro core log callback
+static void core_log_cb(enum retro_log_level level, const char *fmt, ...) {
+    char buf[2048];
+    va_list args;
+    va_start(args, fmt);
+    vsnprintf(buf, sizeof(buf), fmt, args);
+    va_end(args);
+
+    int priority = ANDROID_LOG_INFO;
+    switch (level) {
+        case RETRO_LOG_DEBUG:
+            priority = ANDROID_LOG_DEBUG;
+            break;
+        case RETRO_LOG_INFO:
+            priority = ANDROID_LOG_INFO;
+            break;
+        case RETRO_LOG_WARN:
+            priority = ANDROID_LOG_WARN;
+            break;
+        case RETRO_LOG_ERROR:
+            priority = ANDROID_LOG_ERROR;
+            break;
+        default:
+            priority = ANDROID_LOG_INFO;
+            break;
+    }
+    __android_log_write(priority, "LibretroCore", buf);
+}
+
 // Environment callback
 static bool core_environment_cb(unsigned cmd, void *data) {
     switch (cmd) {
         case RETRO_ENVIRONMENT_GET_SYSTEM_DIRECTORY:
         case RETRO_ENVIRONMENT_GET_SAVE_DIRECTORY:
+        case RETRO_ENVIRONMENT_GET_CONTENT_DIRECTORY:
             *(const char **)data = g_system_dir;
             return true;
 
@@ -74,7 +105,16 @@ static bool core_environment_cb(unsigned cmd, void *data) {
 
         case RETRO_ENVIRONMENT_GET_VARIABLE: {
             struct retro_variable *var = (struct retro_variable *)data;
-            if (var) {
+            if (var && var->key) {
+                LOGI("[CORE VAR] %s", var->key);
+                if (strcmp(var->key, "parallel-n64-gfxplugin") == 0) {
+                    var->value = "angrylion";
+                    return true;
+                }
+                if (strcmp(var->key, "parallel-n64-rspplugin") == 0) {
+                    var->value = "cxd4";
+                    return true;
+                }
                 var->value = NULL;
             }
             return false;
@@ -115,8 +155,14 @@ static bool core_environment_cb(unsigned cmd, void *data) {
             return true;
         }
 
-        case RETRO_ENVIRONMENT_GET_LOG_INTERFACE:
+        case RETRO_ENVIRONMENT_GET_LOG_INTERFACE: {
+            struct retro_log_callback *cb = (struct retro_log_callback *)data;
+            if (cb) {
+                cb->log = core_log_cb;
+                return true;
+            }
             return false;
+        }
 
         default:
             return false;
@@ -331,6 +377,15 @@ Java_com_retro_tvbox_core_LibretroBridge_nativeLoadGame(JNIEnv *env, jobject thi
 
     const char *rom_path = env->GetStringUTFChars(romPath, NULL);
 
+    struct retro_system_info sys_info = {0};
+    if (p_retro_get_system_info) {
+        p_retro_get_system_info(&sys_info);
+        LOGI("Core System Info: library_name='%s', valid_extensions='%s', need_fullpath=%d",
+             sys_info.library_name ? sys_info.library_name : "unknown",
+             sys_info.valid_extensions ? sys_info.valid_extensions : "all",
+             sys_info.need_fullpath ? 1 : 0);
+    }
+
     FILE *f = fopen(rom_path, "rb");
     if (!f) {
         LOGE("No se pudo abrir archivo ROM: %s", rom_path);
@@ -345,9 +400,10 @@ Java_com_retro_tvbox_core_LibretroBridge_nativeLoadGame(JNIEnv *env, jobject thi
     struct retro_game_info game_info = {0};
     game_info.path = rom_path;
 
-    // Si la ROM es de cartucho (<= 32 MB), proveer los bytes en memoria RAM
-    // para que cores como Genesis Plus GX y Snes9x verifiquen la cabecera
-    if (g_rom_size > 0 && g_rom_size <= 32 * 1024 * 1024) {
+    // Si need_fullpath es false y la ROM es de tamaño cartucho (<= 32 MB),
+    // proveer los bytes en memoria RAM. Si need_fullpath es true (ej. PSX, N64),
+    // dejar data = NULL y size = 0 pasando únicamente el path.
+    if (!sys_info.need_fullpath && g_rom_size > 0 && g_rom_size <= 32 * 1024 * 1024) {
         if (g_rom_data) free(g_rom_data);
         g_rom_data = (uint8_t *)malloc(g_rom_size);
         if (g_rom_data) {
@@ -357,7 +413,10 @@ Java_com_retro_tvbox_core_LibretroBridge_nativeLoadGame(JNIEnv *env, jobject thi
             LOGI("ROM cargada en memoria: %zu bytes", g_rom_size);
         }
     } else {
-        LOGI("Juego de disco masivo (>32MB) referenciado por ruta: %s", rom_path);
+        LOGI("Juego referenciado únicamente por ruta (need_fullpath=%d, size=%zu): %s",
+             sys_info.need_fullpath ? 1 : 0, g_rom_size, rom_path);
+        game_info.data = NULL;
+        game_info.size = 0;
     }
     fclose(f);
 
@@ -366,8 +425,10 @@ Java_com_retro_tvbox_core_LibretroBridge_nativeLoadGame(JNIEnv *env, jobject thi
 
     if (!loaded) {
         LOGE("Fallo en p_retro_load_game");
-        free(g_rom_data);
-        g_rom_data = NULL;
+        if (g_rom_data) {
+            free(g_rom_data);
+            g_rom_data = NULL;
+        }
         return JNI_FALSE;
     }
 

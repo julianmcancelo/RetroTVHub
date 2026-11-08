@@ -63,6 +63,7 @@ import androidx.compose.ui.unit.sp
 import com.retro.tvbox.repository.CacheManager
 import com.retro.tvbox.repository.ConsoleManifest
 import com.retro.tvbox.repository.DownloadProgress
+import com.retro.tvbox.repository.ExternalRomScanner
 import com.retro.tvbox.repository.GameDownloader
 import com.retro.tvbox.repository.GameEntry
 import com.retro.tvbox.repository.RepositoryClient
@@ -106,11 +107,16 @@ fun CatalogScreen(
     val firstFocus = remember { FocusRequester() }
     val gridState = rememberLazyGridState()
 
+    val context = LocalContext.current
+
     LaunchedEffect(console.id) {
         isLoadingCatalog = true
         val result = repoClient.fetchConsoleCatalog(console.catalogUrl, console.id)
         val catalog = result.getOrNull() ?: RepositoryClient.createBuiltinCatalog(console.id)
-        games = catalog.games
+        val localGames = try {
+            ExternalRomScanner.scanAllExternalRoms(context).filter { it.consoleId == console.id }
+        } catch (_: Exception) { emptyList() }
+        games = localGames + catalog.games.filter { g -> !localGames.any { it.fileUrl == g.fileUrl } }
         focusedGame = games.firstOrNull()
         isLoadingCatalog = false
     }
@@ -239,7 +245,8 @@ fun CatalogScreen(
                         modifier = Modifier.fillMaxSize()
                     ) {
                         itemsIndexed(games) { index, game ->
-                            val isCached = cacheManager.isRomCached(game.id, game.expectedExtension)
+                            val local = remember(game.fileUrl) { File(game.fileUrl) }
+                            val isCached = (local.exists() && local.length() > 0) || cacheManager.isRomCached(game.id, game.expectedExtension)
                             val downloadStatus = activeDownloads[game.id]
 
                             val itemModifier = if (index == 0) {
@@ -253,7 +260,9 @@ fun CatalogScreen(
                                 modifier = itemModifier,
                                 onFocused = { focusedGame = game },
                                 onAction = {
-                                    if (isCached) {
+                                    if (local.exists() && local.length() > 0) {
+                                        onLaunchGame(game, local)
+                                    } else if (isCached) {
                                         val romFile = cacheManager.getRomFile(game.id, game.expectedExtension)
                                         onLaunchGame(game, romFile)
                                     } else {
@@ -292,7 +301,8 @@ fun CatalogScreen(
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 focusedGame?.let { game ->
-                    val isCached = cacheManager.isRomCached(game.id, game.expectedExtension)
+                    val local = remember(game.fileUrl) { File(game.fileUrl) }
+                    val isCached = (local.exists() && local.length() > 0) || cacheManager.isRomCached(game.id, game.expectedExtension)
                     val sizeMb = if (game.sizeBytes > 0) game.sizeBytes / (1024 * 1024) else 1
                     val downloadStatus = activeDownloads[game.id]
 
@@ -449,7 +459,9 @@ fun CatalogScreen(
                                 isCached = isCached,
                                 sizeMb = sizeMb,
                                 onClick = {
-                                    if (isCached) {
+                                    if (local.exists() && local.length() > 0) {
+                                        onLaunchGame(game, local)
+                                    } else if (isCached) {
                                         val romFile = cacheManager.getRomFile(game.id, game.expectedExtension)
                                         onLaunchGame(game, romFile)
                                     } else {

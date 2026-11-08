@@ -175,14 +175,37 @@ class CacheManager(
 
     /**
      * Verifica si una ROM ya está descargada y disponible en la caché.
+     * Comprueba que exista, que no sea un archivo parcial (.part) y que supere 1 KB (evita archivos corruptos o vacíos).
      */
     fun isRomCached(gameId: String, extension: String): Boolean {
         val file = getRomFile(gameId, extension)
-        val exists = file.exists() && file.length() > 0
+        val exists = file.exists() && !file.name.endsWith(".part") && file.length() > 1024L
         if (exists) {
             markRomAccessed(gameId, file)
         }
         return exists
+    }
+
+    /**
+     * Elimina tanto el archivo final en temp_roms como cualquier archivo ${gameId}_download.part
+     * si existen dentro de tempRomsDir.
+     */
+    @Synchronized
+    fun deleteCorruptedOrPartial(gameId: String, extension: String) {
+        val finalRom = getRomFile(gameId, extension)
+        if (finalRom.exists()) {
+            safeDelete(finalRom)
+        }
+        val partFile = File(tempRomsDir, "${gameId}_download.part")
+        if (partFile.exists()) {
+            safeDelete(partFile)
+        }
+        val sanitizedPartFile = File(tempRomsDir, "${sanitize(gameId)}_download.part")
+        if (sanitizedPartFile.exists()) {
+            safeDelete(sanitizedPartFile)
+        }
+        memoryLRUMap.remove(gameId)
+        persistLRUIndex()
     }
 
     /**

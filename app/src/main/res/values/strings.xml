@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RetroTV Hub</string>
+    <string name="banner_description">RetroTV Hub - Plataforma de Emulación</string>
+    <string name="consoles_title">Sistemas Retro</string>
+    <string name="games_title">Catálogo de Juegos</string>
+    <string name="memory_cards_title">Memory Cards</string>
+    <string name="settings_title">Ajustes</string>
+    <string name="action_play">Jugar Ahora</string>
+    <string name="action_download">Descargar &amp; Jugar</string>
+    <string name="status_downloading">Descargando...</string>
+    <string name="status_ready">Listo</string>
+    <string name="dialog_save_state">Guardar Estado</string>
+    <string name="dialog_load_state">Cargar Estado</string>
+    <string name="dialog_reset">Reiniciar</string>
+    <string name="dialog_exit_purge">Salir y Purgar Caché</string>
+    <string name="dialog_exit_keep">Salir y Mantener Caché</string>
+</resources>

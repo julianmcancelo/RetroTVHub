@@ -1,0 +1,560 @@
+/* ==========================================================================
+   RETRO TVBOX VIRTUAL GAMEPAD - MOBILE WEB CONTROLLER
+   High-performance touch layout, console skins & tactile visual response
+   ========================================================================== */
+
+:root {
+  --bg-color: #121318;
+  --surface-color: #1c1e24;
+  --surface-active: #2a2d36;
+  --accent-cyan: #00d2ff;
+  --accent-green: #00e676;
+  --accent-red: #ff3d71;
+  --accent-yellow: #ffc400;
+  --accent-purple: #7952b3;
+  --text-main: #f0f3f8;
+  --text-dim: #8c93a4;
+
+  --btn-press-glow: 0 0 18px rgba(0, 210, 255, 0.6);
+  --btn-shadow: 0 6px 12px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  --btn-pressed-shadow: 0 2px 4px rgba(0, 0, 0, 0.6), inset 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Global Reset for Fullscreen Mobile Touch */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--bg-color);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-main);
+  touch-action: none;
+  overscroll-behavior: none;
+  -webkit-touch-callout: none;
+}
+
+/* ==========================================================================
+   TOP BAR & SYSTEM STATUS
+   ========================================================================== */
+
+#top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background: rgba(18, 19, 24, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  height: 52px;
+  z-index: 100;
+}
+
+.header-left, .header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-center {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ff9800;
+}
+
+#connection-pill.connected .status-dot {
+  background-color: var(--accent-green);
+  box-shadow: 0 0 8px var(--accent-green);
+}
+
+#connection-pill.disconnected .status-dot {
+  background-color: var(--accent-red);
+}
+
+#player-pill {
+  background: linear-gradient(135deg, #2b32b2, #1488cc);
+  color: #fff;
+  border: none;
+}
+
+#ping-pill {
+  color: var(--text-dim);
+}
+
+select {
+  background: #252830;
+  color: var(--text-main);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  outline: none;
+}
+
+.icon-btn {
+  background: #252830;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-main);
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.15s ease;
+}
+
+.icon-btn:active {
+  transform: scale(0.92);
+}
+
+.icon-btn.active {
+  background: #1488cc;
+  border-color: #00d2ff;
+}
+
+/* ==========================================================================
+   SHOULDER BUTTONS (L1, R1, L2, R2)
+   ========================================================================== */
+
+.shoulders {
+  display: flex;
+  gap: 6px;
+}
+
+.shoulder-btn {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  background: #2c2f38;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #d1d5db;
+  box-shadow: var(--btn-shadow);
+  touch-action: none;
+}
+
+.shoulder-btn.trigger-btn {
+  background: #20232a;
+}
+
+.shoulder-btn.pressed, .shoulder-btn:active {
+  transform: translateY(2px);
+  background: var(--surface-active);
+  color: var(--accent-cyan);
+  box-shadow: var(--btn-pressed-shadow), 0 0 10px rgba(0, 210, 255, 0.4);
+}
+
+/* ==========================================================================
+   MAIN GAMEPAD SURFACE
+   ========================================================================== */
+
+#gamepad-surface {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  height: calc(100vh - 52px);
+  height: calc(100dvh - 52px);
+  padding: 12px 24px;
+  align-items: center;
+}
+
+.control-zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+/* ==========================================================================
+   D-PAD (CRUCETA DIGITAL)
+   ========================================================================== */
+
+.dpad-container {
+  width: 220px;
+  height: 220px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.6));
+}
+
+.dpad-cross {
+  width: 190px;
+  height: 190px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dpad-horizontal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.dpad-btn {
+  width: 62px;
+  height: 62px;
+  background: #23272f;
+  border: 2px solid #363b46;
+  color: #9aa1b2;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  touch-action: none;
+  cursor: pointer;
+  transition: background 0.08s ease, color 0.08s ease;
+}
+
+.dpad-up {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom: none;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.dpad-down {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-top: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.dpad-left {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border-right: none;
+  box-shadow: -4px 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.dpad-right {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-left: none;
+  box-shadow: 4px 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.dpad-center-pivot {
+  width: 62px;
+  height: 62px;
+  background: #23272f;
+  border: none;
+  position: relative;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+.dpad-center-pivot::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #191b20;
+}
+
+.dpad-btn.pressed, .dpad-btn:active {
+  background: #3a404e;
+  color: var(--accent-cyan);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.7), 0 0 12px rgba(0, 210, 255, 0.5);
+}
+
+/* ==========================================================================
+   CENTER META BUTTONS (SELECT, START, HOME)
+   ========================================================================== */
+
+.center-buttons {
+  display: flex;
+  gap: 22px;
+  align-items: flex-end;
+  padding-bottom: 24px;
+}
+
+.meta-btn-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.meta-pill-btn {
+  width: 60px;
+  height: 20px;
+  border-radius: 10px;
+  background: #2c2f38;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transform: rotate(-25deg);
+  box-shadow: var(--btn-shadow);
+  color: transparent;
+  touch-action: none;
+  cursor: pointer;
+}
+
+.meta-home-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #20232a;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #adb5bd;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--btn-shadow);
+  touch-action: none;
+}
+
+.meta-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #717786;
+  text-transform: uppercase;
+}
+
+.meta-pill-btn.pressed, .meta-pill-btn:active {
+  background: var(--surface-active);
+  box-shadow: var(--btn-pressed-shadow);
+  transform: rotate(-25deg) scale(0.94);
+}
+
+.meta-home-btn.pressed, .meta-home-btn:active {
+  background: var(--surface-active);
+  color: var(--accent-cyan);
+  transform: scale(0.92);
+}
+
+/* ==========================================================================
+   RIGHT ZONE - ACTION BUTTON CLUSTERS
+   ========================================================================== */
+
+.action-cluster {
+  display: none; /* Managed by skin class */
+  position: relative;
+}
+
+.pad-btn {
+  touch-action: none;
+  cursor: pointer;
+  outline: none;
+}
+
+/* ==========================================================================
+   SKIN 1: SNES 4-BUTTON DIAMOND LAYOUT
+   ========================================================================== */
+
+.skin-snes #actions-snes {
+  display: block;
+  width: 210px;
+  height: 210px;
+}
+
+.diamond-cluster .action-btn {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: 800;
+  position: absolute;
+  box-shadow: var(--btn-shadow);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.05s ease;
+}
+
+.btn-top    { top: 0; left: 72px; }
+.btn-left   { top: 72px; left: 0; }
+.btn-right  { top: 72px; right: 0; }
+.btn-bottom { bottom: 0; left: 72px; }
+
+/* SNES Super Famicom colors */
+.skin-snes .action-a { background: #e53935; color: #fff; } /* Red */
+.skin-snes .action-b { background: #fbc02d; color: #333; } /* Yellow */
+.skin-snes .action-x { background: #1e88e5; color: #fff; } /* Blue */
+.skin-snes .action-y { background: #43a047; color: #fff; } /* Green */
+
+.action-btn.pressed, .action-btn:active {
+  transform: scale(0.92);
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.6), 0 0 16px rgba(255, 255, 255, 0.7);
+  filter: brightness(1.2);
+}
+
+/* ==========================================================================
+   SKIN 2: NES 2-BUTTON LAYOUT
+   ========================================================================== */
+
+.skin-nes #actions-nes {
+  display: flex;
+  gap: 26px;
+  align-items: center;
+  transform: rotate(-15deg);
+  padding: 18px 24px;
+  background: #252830;
+  border-radius: 12px;
+  border: 2px solid #3e4452;
+}
+
+.nes-btn {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #c62828;
+  border: 3px solid #8e0000;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 900;
+  box-shadow: var(--btn-shadow);
+}
+
+.nes-btn.pressed, .nes-btn:active {
+  transform: scale(0.92);
+  background: #ff5252;
+  box-shadow: var(--btn-pressed-shadow);
+}
+
+/* Hide L2/R2 in NES skin */
+.skin-nes .trigger-btn {
+  display: none;
+}
+
+/* ==========================================================================
+   SKIN 3: SEGA GENESIS / MEGADRIVE 6-BUTTON ARCADE
+   ========================================================================== */
+
+.skin-sega #actions-sega {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sega-row {
+  display: flex;
+  gap: 14px;
+  justify-content: flex-end;
+}
+
+.sega-btn {
+  border-radius: 50%;
+  background: #202228;
+  border: 2px solid #3a3e4a;
+  color: #e0e0e0;
+  font-weight: 800;
+  box-shadow: var(--btn-shadow);
+}
+
+.sega-small {
+  width: 52px;
+  height: 52px;
+  font-size: 16px;
+  background: #2b2e38;
+}
+
+.sega-big {
+  width: 68px;
+  height: 68px;
+  font-size: 20px;
+  background: #18191e;
+  border-color: #2e323e;
+}
+
+.sega-btn.pressed, .sega-btn:active {
+  transform: scale(0.92);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  box-shadow: var(--btn-pressed-shadow), 0 0 12px rgba(0, 210, 255, 0.4);
+}
+
+/* ==========================================================================
+   SKIN 4: PLAYSTATION 1 (TRIANGLE, CIRCLE, CROSS, SQUARE)
+   ========================================================================== */
+
+.skin-ps1 #actions-ps1 {
+  display: block;
+  width: 210px;
+  height: 210px;
+}
+
+.skin-ps1 .action-btn {
+  background: #21242c;
+  border: 2px solid #363b48;
+}
+
+.skin-ps1 .ps-triangle { color: #00e676; text-shadow: 0 0 8px #00e676; }
+.skin-ps1 .ps-circle   { color: #ff3d71; text-shadow: 0 0 8px #ff3d71; }
+.skin-ps1 .ps-cross    { color: #2979ff; text-shadow: 0 0 8px #2979ff; }
+.skin-ps1 .ps-square   { color: #ff4081; text-shadow: 0 0 8px #ff4081; }
+
+.skin-ps1 .action-btn.pressed, .skin-ps1 .action-btn:active {
+  transform: scale(0.92);
+  background: #2c313d;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.7), 0 0 14px currentColor;
+}
+
+/* ==========================================================================
+   RESPONSIVE OPTIMIZATIONS FOR MOBILE DEVICES
+   ========================================================================== */
+
+@media (max-height: 480px) {
+  #top-bar {
+    height: 42px;
+    padding: 4px 12px;
+  }
+  #gamepad-surface {
+    height: calc(100vh - 42px);
+    height: calc(100dvh - 42px);
+    padding: 6px 16px;
+  }
+  .dpad-container, .diamond-cluster {
+    transform: scale(0.85);
+  }
+  .sega-small { width: 44px; height: 44px; }
+  .sega-big { width: 56px; height: 56px; }
+  .nes-btn { width: 62px; height: 62px; }
+}

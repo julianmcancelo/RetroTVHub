@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <cache-path name="temp_roms" path="temp_roms/" />
+    <files-path name="saves" path="saves/" />
+    <files-path name="legacy_saves" path="user_saves/" />
+    <files-path name="cards" path="memcards/" />
+    <files-path name="legacy_cards" path="memory_cards/" />
+    <files-path name="states" path="save_states/" />
+    <files-path name="system" path="system/" />
+</paths>

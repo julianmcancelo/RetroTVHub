@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="320dp"
+    android:height="180dp"
+    android:viewportWidth="320"
+    android:viewportHeight="180">
+
+    <!-- Deep TV Slate Gradient Background -->
+    <path
+        android:pathData="M0,0h320v180h-320z"
+        android:fillColor="#0D111A" />
+
+    <!-- Subtle Accent Grid lines -->
+    <path
+        android:pathData="M0,45h320 M0,90h320 M0,135h320 M80,0v180 M160,0v180 M240,0v180"
+        android:strokeColor="#1F2839"
+        android:strokeWidth="1" />
+
+    <!-- Neon Glow Border -->
+    <path
+        android:pathData="M4,4h312v172h-312z"
+        android:strokeColor="#00E5FF"
+        android:strokeWidth="2" />
+
+    <!-- D-Pad Left Graphic -->
+    <path
+        android:pathData="M45,75h18v-18h14v18h18v14h-18v18h-14v-18h-18z"
+        android:fillColor="#00E5FF" />
+
+    <!-- Action Buttons Right Graphic -->
+    <!-- X Button -->
+    <path
+        android:pathData="M255,65a7,7 0 1,0 0.1,0"
+        android:fillColor="#FF0055" />
+    <!-- Y Button -->
+    <path
+        android:pathData="M240,80a7,7 0 1,0 0.1,0"
+        android:fillColor="#FFE600" />
+    <!-- A Button -->
+    <path
+        android:pathData="M270,80a7,7 0 1,0 0.1,0"
+        android:fillColor="#00E676" />
+    <!-- B Button -->
+    <path
+        android:pathData="M255,95a7,7 0 1,0 0.1,0"
+        android:fillColor="#2979FF" />
+
+    <!-- Central Logo Arc / CRT Screen outline -->
+    <path
+        android:pathData="M110,48h100c6,0 10,4 10,10v48c0,6 -4,10 -10,10h-100c-6,0 -10,-4 -10,-10v-48c0,-6 4,-10 10,-10z"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.5" />
+
+    <!-- TV Screen Inner Glow -->
+    <path
+        android:pathData="M115,53h90c3,0 5,2 5,5v38c0,3 -2,5 -5,5h-90c-3,0 -5,-2 -5,-5v-38c0,-3 2,-5 5,-5z"
+        android:fillColor="#162032" />
+
+    <!-- Pixel Retro Pulse inside screen -->
+    <path
+        android:pathData="M130,75h12v-12h10v20h12v-8h10v16h16"
+        android:strokeColor="#00E5FF"
+        android:strokeWidth="2.5" />
+
+    <!-- Stand for CRT TV -->
+    <path
+        android:pathData="M145,116h30v6h-30z"
+        android:fillColor="#3A475E" />
+    <path
+        android:pathData="M135,122h50v4h-50z"
+        android:fillColor="#222B3A" />
+</vector>

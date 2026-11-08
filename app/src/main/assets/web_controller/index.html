@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#121216">
+  <title>Retro TVBox Gamepad</title>
+  <link rel="stylesheet" href="controller.css">
+</head>
+<body class="skin-snes">
+  <!-- Top Bar: Status, Player Indicator, Console Skin Selector & Fullscreen -->
+  <header id="top-bar">
+    <div class="header-left">
+      <div id="connection-pill" class="pill disconnected">
+        <span class="status-dot"></span>
+        <span id="connection-text">Conectando...</span>
+      </div>
+      <div id="player-pill" class="pill">
+        <span id="player-label">P1</span>
+      </div>
+      <div id="ping-pill" class="pill">
+        <span id="ping-text">-- ms</span>
+      </div>
+    </div>
+
+    <div class="header-center">
+      <!-- Shoulder Buttons L1 / L2 for consoles that have them -->
+      <div class="shoulders left-shoulders">
+        <button id="btn-l2" class="pad-btn shoulder-btn trigger-btn" data-btn="L2">L2</button>
+        <button id="btn-l1" class="pad-btn shoulder-btn bumper-btn" data-btn="L1">L1</button>
+      </div>
+      <div class="shoulders right-shoulders">
+        <button id="btn-r1" class="pad-btn shoulder-btn bumper-btn" data-btn="R1">R1</button>
+        <button id="btn-r2" class="pad-btn shoulder-btn trigger-btn" data-btn="R2">R2</button>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <select id="skin-select" title="Seleccionar Consola">
+        <option value="skin-snes" selected>SNES (4 Botones)</option>
+        <option value="skin-nes">NES (2 Botones)</option>
+        <option value="skin-sega">Sega Genesis (6 Botones)</option>
+        <option value="skin-ps1">PlayStation (△◯✕▢)</option>
+      </select>
+      <select id="player-select" title="Cambiar Jugador">
+        <option value="1">Jugador 1</option>
+        <option value="2">Jugador 2</option>
+        <option value="3">Jugador 3</option>
+        <option value="4">Jugador 4</option>
+      </select>
+      <button id="btn-fullscreen" class="icon-btn" title="Pantalla Completa">⛶</button>
+      <button id="btn-haptics" class="icon-btn active" title="Vibración Háptica">📳</button>
+    </div>
+  </header>
+
+  <!-- Main Gamepad Surface -->
+  <main id="gamepad-surface">
+    <!-- Left Zone: Directional Pad (D-Pad) -->
+    <section class="control-zone zone-left">
+      <div id="dpad" class="dpad-container">
+        <div class="dpad-cross">
+          <button id="dpad-up" class="dpad-btn dpad-up" data-btn="DPAD_UP" aria-label="Arriba">▲</button>
+          <div class="dpad-horizontal">
+            <button id="dpad-left" class="dpad-btn dpad-left" data-btn="DPAD_LEFT" aria-label="Izquierda">◀</button>
+            <div class="dpad-center-pivot"></div>
+            <button id="dpad-right" class="dpad-btn dpad-right" data-btn="DPAD_RIGHT" aria-label="Derecha">▶</button>
+          </div>
+          <button id="dpad-down" class="dpad-btn dpad-down" data-btn="DPAD_DOWN" aria-label="Abajo">▼</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Center Zone: Meta Buttons (Select, Start, Home) -->
+    <section class="control-zone zone-center">
+      <div class="center-buttons">
+        <div class="meta-btn-group">
+          <button id="btn-select" class="pad-btn meta-pill-btn" data-btn="SELECT">SELECT</button>
+          <span class="meta-label">SELECT</span>
+        </div>
+        <div class="meta-btn-group">
+          <button id="btn-home" class="pad-btn meta-home-btn" data-btn="HOME" title="Menú">⚙</button>
+        </div>
+        <div class="meta-btn-group">
+          <button id="btn-start" class="pad-btn meta-pill-btn" data-btn="START">START</button>
+          <span class="meta-label">START</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Zone: Action Buttons (Dynamic according to Console Skin) -->
+    <section class="control-zone zone-right">
+      <!-- SNES / Generic Diamond Layout -->
+      <div id="actions-snes" class="action-cluster diamond-cluster">
+        <button id="btn-x" class="pad-btn action-btn btn-top action-x" data-btn="X">X</button>
+        <button id="btn-y" class="pad-btn action-btn btn-left action-y" data-btn="Y">Y</button>
+        <button id="btn-a" class="pad-btn action-btn btn-right action-a" data-btn="A">A</button>
+        <button id="btn-b" class="pad-btn action-btn btn-bottom action-b" data-btn="B">B</button>
+      </div>
+
+      <!-- NES 2-Button Layout -->
+      <div id="actions-nes" class="action-cluster nes-cluster">
+        <button id="btn-nes-b" class="pad-btn nes-btn action-b" data-btn="B">B</button>
+        <button id="btn-nes-a" class="pad-btn nes-btn action-a" data-btn="A">A</button>
+      </div>
+
+      <!-- Sega 6-Button Arcade Layout -->
+      <div id="actions-sega" class="action-cluster sega-cluster">
+        <div class="sega-row sega-top-row">
+          <button id="btn-sega-x" class="pad-btn sega-btn sega-small" data-btn="SEGA_X">X</button>
+          <button id="btn-sega-y" class="pad-btn sega-btn sega-small" data-btn="SEGA_Y">Y</button>
+          <button id="btn-sega-z" class="pad-btn sega-btn sega-small" data-btn="SEGA_Z">Z</button>
+        </div>
+        <div class="sega-row sega-bottom-row">
+          <button id="btn-sega-a" class="pad-btn sega-btn sega-big" data-btn="SEGA_A">A</button>
+          <button id="btn-sega-b" class="pad-btn sega-btn sega-big" data-btn="SEGA_B">B</button>
+          <button id="btn-sega-c" class="pad-btn sega-btn sega-big" data-btn="SEGA_C">C</button>
+        </div>
+      </div>
+
+      <!-- PlayStation Geometry Layout -->
+      <div id="actions-ps1" class="action-cluster diamond-cluster ps1-cluster">
+        <button id="btn-ps-triangle" class="pad-btn action-btn btn-top ps-triangle" data-btn="X">▲</button>
+        <button id="btn-ps-square" class="pad-btn action-btn btn-left ps-square" data-btn="Y">■</button>
+        <button id="btn-ps-circle" class="pad-btn action-btn btn-right ps-circle" data-btn="A">●</button>
+        <button id="btn-ps-cross" class="pad-btn action-btn btn-bottom ps-cross" data-btn="B">✕</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="controller.js"></script>
+</body>
+</html>

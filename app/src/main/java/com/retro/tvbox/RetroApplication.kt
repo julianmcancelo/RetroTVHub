@@ -1,6 +1,9 @@
 package com.retro.tvbox
 
 import android.app.Application
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import com.retro.tvbox.input.InputRouter
 import com.retro.tvbox.input.phone.PhoneControllerServer
 import com.retro.tvbox.repository.CacheManager
@@ -11,6 +14,8 @@ import com.retro.tvbox.save.SaveManager
 import com.retro.tvbox.save.SaveStateService
 
 class RetroApplication : Application() {
+
+    val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
     lateinit var cacheManager: CacheManager
         private set

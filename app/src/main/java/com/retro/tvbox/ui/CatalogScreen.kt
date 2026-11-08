@@ -1,5 +1,7 @@
 package com.retro.tvbox.ui
 
+import com.retro.tvbox.RetroApplication
+
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -255,8 +257,8 @@ fun CatalogScreen(
                                         val romFile = cacheManager.getRomFile(game.id, game.expectedExtension)
                                         onLaunchGame(game, romFile)
                                     } else {
-                                        // Trigger Play-on-Demand download
-                                        coroutineScope.launch {
+                                        // Trigger Play-on-Demand download with app-persistent scope
+                                        RetroApplication.instance.applicationScope.launch {
                                             downloader.downloadGame(game).collect { progress ->
                                                 activeDownloads[game.id] = progress
                                                 if (progress is DownloadProgress.Completed) {
@@ -451,7 +453,7 @@ fun CatalogScreen(
                                         val romFile = cacheManager.getRomFile(game.id, game.expectedExtension)
                                         onLaunchGame(game, romFile)
                                     } else {
-                                        coroutineScope.launch {
+                                        RetroApplication.instance.applicationScope.launch {
                                             downloader.downloadGame(game).collect { progress ->
                                                 activeDownloads[game.id] = progress
                                                 if (progress is DownloadProgress.Completed) {

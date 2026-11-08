@@ -45,6 +45,8 @@ class GameDownloader(
 
     private val httpClient: OkHttpClient by lazy {
         OkHttpClient.Builder()
+            .followRedirects(true)
+            .followSslRedirects(true)
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .build()
@@ -72,7 +74,11 @@ class GameDownloader(
         val tempDownloadFile = File(cacheManager.tempRomsDir, "${game.id}_download.part")
 
         try {
-            val request = Request.Builder().url(game.fileUrl).build()
+            val request = Request.Builder()
+                .url(game.fileUrl)
+                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+                .header("Accept", "*/*")
+                .build()
 
             var downloadedBytes = 0L
             var totalBytes = game.sizeBytes

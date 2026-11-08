@@ -25,6 +25,8 @@ static char g_system_dir[512] = {0};
 static char g_save_dir[512] = {0};
 static enum retro_pixel_format g_pixel_format = RETRO_PIXEL_FORMAT_RGB565;
 static struct retro_system_av_info g_av_info = {0};
+static unsigned g_current_buf_width = 0;
+static unsigned g_current_buf_height = 0;
 static bool g_button_states[4][16] = {{false}};
 static uint8_t *g_rom_data = NULL;
 static size_t g_rom_size = 0;
@@ -95,7 +97,13 @@ static bool core_environment_cb(unsigned cmd, void *data) {
 
 // Video refresh callback: copies emulated pixels directly to ANativeWindow buffer
 static void core_video_refresh_cb(const void *data, unsigned width, unsigned height, size_t pitch) {
-    if (!data || !g_native_window) return;
+    if (!data || !g_native_window || width == 0 || height == 0) return;
+
+    if (g_current_buf_width != width || g_current_buf_height != height) {
+        g_current_buf_width = width;
+        g_current_buf_height = height;
+        ANativeWindow_setBuffersGeometry(g_native_window, width, height, WINDOW_FORMAT_RGBA_8888);
+    }
 
     ANativeWindow_Buffer win_buffer;
     if (ANativeWindow_lock(g_native_window, &win_buffer, NULL) < 0) {
@@ -151,6 +159,9 @@ static void core_video_refresh_cb(const void *data, unsigned width, unsigned hei
     ANativeWindow_unlockAndPost(g_native_window);
 }
 
+// Forward declaration
+static size_t core_audio_sample_batch_cb(const int16_t *data, size_t frames);
+
 // Audio sample callback (single stereo frame)
 static void core_audio_sample_cb(int16_t left, int16_t right) {
     int16_t samples[2] = {left, right};
@@ -161,24 +172,24 @@ static void core_audio_sample_cb(int16_t left, int16_t right) {
 static size_t core_audio_sample_batch_cb(const int16_t *data, size_t frames) {
     if (!g_jvm || !g_bridge_obj || !g_audio_callback_mid || frames == 0) return frames;
 
-    JNIEnv *env = NULL;
-    jint res = (*g_jvm)->GetEnv(g_jvm, (void **)&env, JNI_VERSION_1_6);
+    JNIEnv *env = nullptr;
+    jint res = g_jvm->GetEnv((void **)&env, JNI_VERSION_1_6);
     bool attached = false;
     if (res == JNI_EDETACHED) {
-        if ((*g_jvm)->AttachCurrentThread(g_jvm, &env, NULL) != JNI_OK) return frames;
+        if (g_jvm->AttachCurrentThread(&env, nullptr) != JNI_OK) return frames;
         attached = true;
     }
 
     jsize sample_count = (jsize)(frames * 2);
-    jshortArray arr = (*env)->NewShortArray(env, sample_count);
+    jshortArray arr = env->NewShortArray(sample_count);
     if (arr) {
-        (*env)->SetShortArrayRegion(env, arr, 0, sample_count, (const jshort *)data);
-        (*env)->CallVoidMethod(env, g_bridge_obj, g_audio_callback_mid, arr);
-        (*env)->DeleteLocalRef(env, arr);
+        env->SetShortArrayRegion(arr, 0, sample_count, (const jshort *)data);
+        env->CallVoidMethod(g_bridge_obj, g_audio_callback_mid, arr);
+        env->DeleteLocalRef(arr);
     }
 
     if (attached) {
-        (*g_jvm)->DetachCurrentThread(g_jvm);
+        g_jvm->DetachCurrentThread();
     }
     return frames;
 }
@@ -275,6 +286,8 @@ Java_com_retro_tvbox_core_LibretroBridge_nativeSetSurface(JNIEnv *env, jobject t
     if (g_native_window) {
         ANativeWindow_release(g_native_window);
         g_native_window = NULL;
+        g_current_buf_width = 0;
+        g_current_buf_height = 0;
     }
     if (surface) {
         g_native_window = ANativeWindow_fromSurface(env, surface);

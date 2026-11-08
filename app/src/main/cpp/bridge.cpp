@@ -331,46 +331,35 @@ Java_com_retro_tvbox_core_LibretroBridge_nativeLoadGame(JNIEnv *env, jobject thi
 
     const char *rom_path = env->GetStringUTFChars(romPath, NULL);
 
-    struct retro_system_info sys_info = {0};
-    if (p_retro_get_system_info) {
-        p_retro_get_system_info(&sys_info);
+    FILE *f = fopen(rom_path, "rb");
+    if (!f) {
+        LOGE("No se pudo abrir archivo ROM: %s", rom_path);
+        env->ReleaseStringUTFChars(romPath, rom_path);
+        return JNI_FALSE;
     }
+
+    fseek(f, 0, SEEK_END);
+    g_rom_size = ftell(f);
+    fseek(f, 0, SEEK_SET);
 
     struct retro_game_info game_info = {0};
     game_info.path = rom_path;
 
-    if (sys_info.need_fullpath) {
-        // Cores disc-based o arcade que requieren ruta física directa
-        game_info.data = NULL;
-        game_info.size = 0;
-        LOGI("Cargando juego via need_fullpath: %s", rom_path);
-    } else {
-        FILE *f = fopen(rom_path, "rb");
-        if (!f) {
-            LOGE("No se pudo abrir archivo ROM: %s", rom_path);
-            env->ReleaseStringUTFChars(romPath, rom_path);
-            return JNI_FALSE;
-        }
-
-        fseek(f, 0, SEEK_END);
-        g_rom_size = ftell(f);
-        fseek(f, 0, SEEK_SET);
-
+    // Si la ROM es de cartucho (<= 32 MB), proveer los bytes en memoria RAM
+    // para que cores como Genesis Plus GX y Snes9x verifiquen la cabecera
+    if (g_rom_size > 0 && g_rom_size <= 32 * 1024 * 1024) {
         if (g_rom_data) free(g_rom_data);
         g_rom_data = (uint8_t *)malloc(g_rom_size);
-        if (!g_rom_data) {
-            fclose(f);
-            env->ReleaseStringUTFChars(romPath, rom_path);
-            return JNI_FALSE;
+        if (g_rom_data) {
+            fread(g_rom_data, 1, g_rom_size, f);
+            game_info.data = g_rom_data;
+            game_info.size = g_rom_size;
+            LOGI("ROM cargada en memoria: %zu bytes", g_rom_size);
         }
-
-        fread(g_rom_data, 1, g_rom_size, f);
-        fclose(f);
-
-        game_info.data = g_rom_data;
-        game_info.size = g_rom_size;
-        LOGI("Cargando juego en memoria: %zu bytes", g_rom_size);
+    } else {
+        LOGI("Juego de disco masivo (>32MB) referenciado por ruta: %s", rom_path);
     }
+    fclose(f);
 
     bool loaded = p_retro_load_game(&game_info);
     env->ReleaseStringUTFChars(romPath, rom_path);

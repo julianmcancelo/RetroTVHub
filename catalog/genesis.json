@@ -1,7 +1,7 @@
 {
   "consoleId": "genesis",
   "consoleName": "SEGA GENESIS / MEGA DRIVE",
-  "count": 3,
+  "count": 6,
   "games": [
     {
       "id": "gen_sonic2",
@@ -46,6 +46,51 @@
       "releaseYear": 1993,
       "maxPlayers": 2,
       "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7o.jpg"
+    },
+    {
+      "id": "gen_goldenaxe",
+      "consoleId": "genesis",
+      "title": "Golden Axe",
+      "fileUrl": "https://archive.org/download/golden-axe-usa-europe/Golden%20Axe%20(World).zip",
+      "isCompressed": true,
+      "internalRomName": "Golden Axe (World).md",
+      "expectedExtension": "md",
+      "sizeBytes": 420000,
+      "description": "El clásico beat 'em up de espada y brujería de Sega con monturas de dragones y magias elementales.",
+      "genre": "Acción / Fantasía",
+      "releaseYear": 1989,
+      "maxPlayers": 2,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x81.jpg"
+    },
+    {
+      "id": "gen_shinobi3",
+      "consoleId": "genesis",
+      "title": "Shinobi III: Return of the Ninja Master",
+      "fileUrl": "https://archive.org/download/shinobi-iii-return-of-the-ninja-master-usa/Shinobi%20III%20-%20Return%20of%20the%20Ninja%20Master%20(USA).zip",
+      "isCompressed": true,
+      "internalRomName": "Shinobi III - Return of the Ninja Master (USA).md",
+      "expectedExtension": "md",
+      "sizeBytes": 780000,
+      "description": "Joe Musashi enfrenta a Neo Zeed con saltos en pared, shurikens infinitos y magias Ninjutsu acrobáticas.",
+      "genre": "Acción Ninja",
+      "releaseYear": 1993,
+      "maxPlayers": 1,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x82.jpg"
+    },
+    {
+      "id": "gen_aladdin",
+      "consoleId": "genesis",
+      "title": "Disney's Aladdin",
+      "fileUrl": "https://archive.org/download/aladdin-usa-genesis/Aladdin%20(USA).zip",
+      "isCompressed": true,
+      "internalRomName": "Aladdin (USA).md",
+      "expectedExtension": "md",
+      "sizeBytes": 1100000,
+      "description": "Animaciones tradicionales dibujadas a mano por animadores de Walt Disney Feature Animation y acción con cimitarras.",
+      "genre": "Plataformas",
+      "releaseYear": 1993,
+      "maxPlayers": 1,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x83.jpg"
     }
   ]
 }

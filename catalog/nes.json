@@ -1,7 +1,7 @@
 {
   "consoleId": "nes",
   "consoleName": "FAMILY GAME / NES",
-  "count": 4,
+  "count": 5,
   "games": [
     {
       "id": "nes_smb3",
@@ -60,6 +60,20 @@
       "releaseYear": 1988,
       "maxPlayers": 1,
       "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7k.jpg"
+    },
+    {
+      "id": "nes_ducktales",
+      "consoleId": "nes",
+      "title": "DuckTales",
+      "fileUrl": "https://archive.org/download/duck-tales-usa/Duck%20Tales%20(USA).nes",
+      "isCompressed": false,
+      "expectedExtension": "nes",
+      "sizeBytes": 131088,
+      "description": "Scrooge McDuck salta con su bastón por el Amazonas, Transilvania y la Luna con una banda sonora inolvidable.",
+      "genre": "Plataformas",
+      "releaseYear": 1989,
+      "maxPlayers": 1,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7y.jpg"
     }
   ]
 }

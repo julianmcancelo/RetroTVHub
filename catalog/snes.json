@@ -1,7 +1,7 @@
 {
   "consoleId": "snes",
   "consoleName": "SUPER NINTENDO (SNES)",
-  "count": 5,
+  "count": 7,
   "games": [
     {
       "id": "snes_smw",
@@ -73,6 +73,34 @@
       "releaseYear": 1993,
       "maxPlayers": 2,
       "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7f.jpg"
+    },
+    {
+      "id": "snes_chrono",
+      "consoleId": "snes",
+      "title": "Chrono Trigger",
+      "fileUrl": "https://archive.org/download/chrono-trigger-usa-en/Chrono%20Trigger%20(USA).sfc",
+      "isCompressed": false,
+      "expectedExtension": "sfc",
+      "sizeBytes": 4194304,
+      "description": "El Dream Team de Square y Akira Toriyama: viaja a través del tiempo para alterar el destino del mundo.",
+      "genre": "RPG",
+      "releaseYear": 1995,
+      "maxPlayers": 1,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7z.jpg"
+    },
+    {
+      "id": "snes_megamanx",
+      "consoleId": "snes",
+      "title": "Mega Man X",
+      "fileUrl": "https://archive.org/download/mega-man-x-usa-rev-1/Mega%20Man%20X%20(USA)%20(Rev%201).sfc",
+      "isCompressed": false,
+      "expectedExtension": "sfc",
+      "sizeBytes": 1572864,
+      "description": "Dashes aéreos, trepado de paredes y mejoras de armadura en la evolución más rápida y estilizada del bombardero azul.",
+      "genre": "Acción / Plataformas",
+      "releaseYear": 1993,
+      "maxPlayers": 1,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x80.jpg"
     }
   ]
 }

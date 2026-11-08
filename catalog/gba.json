@@ -1,7 +1,7 @@
 {
   "consoleId": "gba",
   "consoleName": "GAME BOY ADVANCE",
-  "count": 3,
+  "count": 5,
   "games": [
     {
       "id": "gba_pokemon_emerald",
@@ -46,6 +46,36 @@
       "releaseYear": 2002,
       "maxPlayers": 1,
       "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7r.jpg"
+    },
+    {
+      "id": "gba_castlevania_aria",
+      "consoleId": "gba",
+      "title": "Castlevania: Aria of Sorrow",
+      "fileUrl": "https://archive.org/download/castlevania-aria-of-sorrow-usa/Castlevania%20-%20Aria%20of%20Sorrow%20(USA).zip",
+      "isCompressed": true,
+      "internalRomName": "Castlevania - Aria of Sorrow (USA).gba",
+      "expectedExtension": "gba",
+      "sizeBytes": 5200000,
+      "description": "Soma Cruz absorbe las almas de sus enemigos en el eclipse solar para desvelar la reencarnación de Drácula.",
+      "genre": "Metroidvania",
+      "releaseYear": 2003,
+      "maxPlayers": 1,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x84.jpg"
+    },
+    {
+      "id": "gba_mariokart",
+      "consoleId": "gba",
+      "title": "Mario Kart: Super Circuit",
+      "fileUrl": "https://archive.org/download/mario-kart-super-circuit-usa/Mario%20Kart%20-%20Super%20Circuit%20(USA).zip",
+      "isCompressed": true,
+      "internalRomName": "Mario Kart - Super Circuit (USA).gba",
+      "expectedExtension": "gba",
+      "sizeBytes": 2800000,
+      "description": "40 circuitos legendarios incluyendo todas las pistas de Super Nintendo remasterizadas para llevar.",
+      "genre": "Carreras",
+      "releaseYear": 2001,
+      "maxPlayers": 1,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x85.jpg"
     }
   ]
 }

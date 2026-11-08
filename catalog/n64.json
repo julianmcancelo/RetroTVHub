@@ -1,7 +1,7 @@
 {
   "consoleId": "n64",
   "consoleName": "NINTENDO 64",
-  "count": 3,
+  "count": 4,
   "games": [
     {
       "id": "n64_sm64",
@@ -45,6 +45,20 @@
       "releaseYear": 1998,
       "maxPlayers": 1,
       "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7x.jpg"
+    },
+    {
+      "id": "n64_starfox",
+      "consoleId": "n64",
+      "title": "Star Fox 64",
+      "fileUrl": "https://archive.org/download/star-fox-64-usa_202401/Star%20Fox%2064%20(USA).z64",
+      "isCompressed": false,
+      "expectedExtension": "z64",
+      "sizeBytes": 12582912,
+      "description": "Do a barrel roll! Pilota el Arwing junto a Fox, Falco, Peppy y Slippy para salvar el sistema Lylat de Andross.",
+      "genre": "Shooter 3D",
+      "releaseYear": 1997,
+      "maxPlayers": 4,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x86.jpg"
     }
   ]
 }

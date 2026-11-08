@@ -207,7 +207,7 @@ fun PlayerScreen(
             var nextFrameTime = System.nanoTime()
 
             while (isActive) {
-                if (!showInGameMenu && !isLoadingCore && isSurfaceReady && bridge.currentState == EmulatorState.RUNNING) {
+                if (!showInGameMenu && !isLoadingCore && isSurfaceReady && (bridge.currentState == EmulatorState.RUNNING || bridge.currentState == EmulatorState.GAME_LOADED)) {
                     bridge.stepFrame()
                 }
 

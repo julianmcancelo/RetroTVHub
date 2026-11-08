@@ -76,7 +76,7 @@ class BiosManager(private val context: Context) {
             consoleId = "psx",
             description = "PlayStation 1 (NTSC-U / América v2.2)",
             isMandatory = true,
-            downloadUrl = "https://archive.org/download/SonyPlayStationBIOSCollection/SCPH1001.BIN",
+            downloadUrl = "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/bios/scph1001.bin",
             expectedSizeBytes = 524288L, // 512 KB
             expectedMd5 = "924e392ed05558ffdb115408aed63d51"
         ),
@@ -85,7 +85,7 @@ class BiosManager(private val context: Context) {
             consoleId = "psx",
             description = "PlayStation 1 (NTSC-U / América v3.0)",
             isMandatory = false,
-            downloadUrl = "https://archive.org/download/SonyPlayStationBIOSCollection/SCPH5501.BIN",
+            downloadUrl = "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/bios/scph5501.bin",
             expectedSizeBytes = 524288L, // 512 KB
             expectedMd5 = "8d8cb7e42dc580b27f302423694aade3"
         ),
@@ -94,7 +94,7 @@ class BiosManager(private val context: Context) {
             consoleId = "psx",
             description = "PlayStation 1 (NTSC-J / Japón)",
             isMandatory = false,
-            downloadUrl = "https://archive.org/download/SonyPlayStationBIOSCollection/SCPH5500.BIN",
+            downloadUrl = "https://archive.org/download/biosesps1/scph1000.bin",
             expectedSizeBytes = 524288L,
             expectedMd5 = "8dd7d5296a650fac7319bce66bbf0a50"
         ),
@@ -103,7 +103,7 @@ class BiosManager(private val context: Context) {
             consoleId = "psx",
             description = "PlayStation 1 (PAL / Europa)",
             isMandatory = false,
-            downloadUrl = "https://archive.org/download/SonyPlayStationBIOSCollection/SCPH5502.BIN",
+            downloadUrl = "https://archive.org/download/biosesps1/scph1002.bin",
             expectedSizeBytes = 524288L,
             expectedMd5 = "32736f17079d0b2b7024407c39bd3050"
         ),
@@ -123,7 +123,7 @@ class BiosManager(private val context: Context) {
             consoleId = "gba",
             description = "Game Boy Advance BIOS Oficial",
             isMandatory = false,
-            downloadUrl = "https://raw.githubusercontent.com/libretro/libretro-database/master/gba_bios.bin",
+            downloadUrl = "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/bios/gba_bios.bin",
             expectedSizeBytes = 16384L, // 16 KB
             expectedMd5 = "a860e8c0b6d573d191e4ec7db1b1e4f6"
         )
@@ -210,7 +210,10 @@ class BiosManager(private val context: Context) {
 
         try {
             Log.i(tag, "Iniciando descarga en 1 clic: ${biosInfo.filename} desde $url")
-            val request = Request.Builder().url(url).build()
+            val request = Request.Builder()
+                .url(url)
+                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) RetroTVHub/1.0")
+                .build()
             val response = client.newCall(request).execute()
 
             if (!response.isSuccessful) {

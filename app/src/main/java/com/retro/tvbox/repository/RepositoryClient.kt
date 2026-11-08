@@ -97,7 +97,7 @@ class RepositoryClient(private val context: Context) {
     }
 
     companion object {
-        const val DEFAULT_REPO_URL = "https://raw.githubusercontent.com/libretro/libretro-database/master/index.json"
+        const val DEFAULT_REPO_URL = "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/index.json"
 
         /**
          * Catálogo predeterminado offline de alto nivel con consolas clásicas soportadas.
@@ -115,7 +115,16 @@ class RepositoryClient(private val context: Context) {
                         releaseYear = 1990,
                         supportedExtensions = listOf("sfc", "smc", "zip"),
                         defaultCore = "snes9x_libretro_android.so",
-                        catalogUrl = "builtin://snes"
+                        catalogUrl = "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/snes.json"
+                    ),
+                    ConsoleManifest(
+                        id = "nes",
+                        name = "Family Game / NES",
+                        manufacturer = "Nintendo",
+                        releaseYear = 1983,
+                        supportedExtensions = listOf("nes", "zip"),
+                        defaultCore = "fceumm_libretro_android.so",
+                        catalogUrl = "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/nes.json"
                     ),
                     ConsoleManifest(
                         id = "genesis",
@@ -124,7 +133,7 @@ class RepositoryClient(private val context: Context) {
                         releaseYear = 1988,
                         supportedExtensions = listOf("md", "bin", "gen", "zip"),
                         defaultCore = "genesis_plus_gx_libretro_android.so",
-                        catalogUrl = "builtin://genesis"
+                        catalogUrl = "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/genesis.json"
                     ),
                     ConsoleManifest(
                         id = "gba",
@@ -133,25 +142,25 @@ class RepositoryClient(private val context: Context) {
                         releaseYear = 2001,
                         supportedExtensions = listOf("gba", "zip"),
                         defaultCore = "mgba_libretro_android.so",
-                        catalogUrl = "builtin://gba"
+                        catalogUrl = "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/gba.json"
                     ),
                     ConsoleManifest(
                         id = "psx",
-                        name = "Sony PlayStation 1",
+                        name = "Sony PlayStation 1 (PSX)",
                         manufacturer = "Sony",
                         releaseYear = 1994,
                         supportedExtensions = listOf("chd", "iso", "bin", "cue"),
                         defaultCore = "pcsx_rearmed_libretro_android.so",
-                        catalogUrl = "builtin://psx"
+                        catalogUrl = "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/psx.json"
                     ),
                     ConsoleManifest(
-                        id = "ps2",
-                        name = "Sony PlayStation 2",
-                        manufacturer = "Sony",
-                        releaseYear = 2000,
-                        supportedExtensions = listOf("iso", "chd", "gz"),
-                        defaultCore = "external_aethersx2",
-                        catalogUrl = "builtin://ps2"
+                        id = "n64",
+                        name = "Nintendo 64",
+                        manufacturer = "Nintendo",
+                        releaseYear = 1996,
+                        supportedExtensions = listOf("z64", "n64", "v64", "zip"),
+                        defaultCore = "mupen64plus_next_libretro_android.so",
+                        catalogUrl = "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/n64.json"
                     )
                 )
             )

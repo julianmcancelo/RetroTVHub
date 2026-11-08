@@ -1,0 +1,67 @@
+{
+  "consoleId": "nes",
+  "consoleName": "FAMILY GAME / NES",
+  "count": 4,
+  "games": [
+    {
+      "id": "nes_smb3",
+      "consoleId": "nes",
+      "title": "Super Mario Bros. 3",
+      "fileUrl": "https://archive.org/download/nes_Super_Mario_Bros_3_USA/Super%20Mario%20Bros.%203%20%28USA%29.zip",
+      "isCompressed": true,
+      "internalRomName": "Super Mario Bros. 3 (USA).nes",
+      "expectedExtension": "nes",
+      "sizeBytes": 220000,
+      "description": "La cumbre de los 8 bits. Vuela con la cola de Tanooki, atraviesa 8 mundos diversos y enfréntate a los Koopalings.",
+      "genre": "Plataformas",
+      "releaseYear": 1988,
+      "maxPlayers": 2,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7g.jpg"
+    },
+    {
+      "id": "nes_contra",
+      "consoleId": "nes",
+      "title": "Contra",
+      "fileUrl": "https://archive.org/download/nes_Contra_USA/Contra%20%28USA%29.zip",
+      "isCompressed": true,
+      "internalRomName": "Contra (USA).nes",
+      "expectedExtension": "nes",
+      "sizeBytes": 130000,
+      "description": "El shooter cooperativo definitivo de Konami. Acción frenética, jefes extraterrestres y el código Konami.",
+      "genre": "Acción / Run & Gun",
+      "releaseYear": 1988,
+      "maxPlayers": 2,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7i.jpg"
+    },
+    {
+      "id": "nes_castlevania",
+      "consoleId": "nes",
+      "title": "Castlevania",
+      "fileUrl": "https://archive.org/download/nes_Castlevania_USA/Castlevania%20%28USA%29.zip",
+      "isCompressed": true,
+      "internalRomName": "Castlevania (USA).nes",
+      "expectedExtension": "nes",
+      "sizeBytes": 128000,
+      "description": "Armado con el látigo Vampire Killer, Simon Belmont entra al castillo del Conde Drácula.",
+      "genre": "Acción / Plataformas",
+      "releaseYear": 1986,
+      "maxPlayers": 1,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7j.jpg"
+    },
+    {
+      "id": "nes_megaman2",
+      "consoleId": "nes",
+      "title": "Mega Man 2",
+      "fileUrl": "https://archive.org/download/nes_Mega_Man_2_USA/Mega%20Man%202%20%28USA%29.zip",
+      "isCompressed": true,
+      "internalRomName": "Mega Man 2 (USA).nes",
+      "expectedExtension": "nes",
+      "sizeBytes": 160000,
+      "description": "Derrota a los 8 Robot Masters y al Dr. Wily con una de las bandas sonoras chiptune más aclamadas de la historia.",
+      "genre": "Acción / Plataformas",
+      "releaseYear": 1988,
+      "maxPlayers": 1,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7k.jpg"
+    }
+  ]
+}

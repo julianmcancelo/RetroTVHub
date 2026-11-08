@@ -1,0 +1,67 @@
+{
+  "consoleId": "genesis",
+  "consoleName": "SEGA GENESIS / MEGA DRIVE",
+  "count": 4,
+  "games": [
+    {
+      "id": "gen_sonic2",
+      "consoleId": "genesis",
+      "title": "Sonic the Hedgehog 2",
+      "fileUrl": "https://archive.org/download/sega_Sonic_the_Hedgehog_2_World/Sonic%20the%20Hedgehog%202%20%28World%29.zip",
+      "isCompressed": true,
+      "internalRomName": "Sonic the Hedgehog 2 (World).md",
+      "expectedExtension": "md",
+      "sizeBytes": 850000,
+      "description": "Velocidad sónica a 60 FPS, el debut del movimiento Spin Dash y la presentación de Miles 'Tails' Prower.",
+      "genre": "Plataformas",
+      "releaseYear": 1992,
+      "maxPlayers": 2,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7l.jpg"
+    },
+    {
+      "id": "gen_sor2",
+      "consoleId": "genesis",
+      "title": "Streets of Rage 2",
+      "fileUrl": "https://archive.org/download/sega_Streets_of_Rage_II_USA/Streets%20of%20Rage%20II%20%28USA%29.zip",
+      "isCompressed": true,
+      "internalRomName": "Streets of Rage II (USA).md",
+      "expectedExtension": "md",
+      "sizeBytes": 1600000,
+      "description": "El beat 'em up supremo de 16 bits con la legendaria banda sonora electrónica de Yuzo Koshiro.",
+      "genre": "Beat 'em up",
+      "releaseYear": 1992,
+      "maxPlayers": 2,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7m.jpg"
+    },
+    {
+      "id": "gen_shinobi3",
+      "consoleId": "genesis",
+      "title": "Shinobi III: Return of the Ninja Master",
+      "fileUrl": "https://archive.org/download/sega_Shinobi_III_USA/Shinobi%20III%20-%20Return%20of%20the%20Ninja%20Master%20%28USA%29.zip",
+      "isCompressed": true,
+      "internalRomName": "Shinobi III - Return of the Ninja Master (USA).md",
+      "expectedExtension": "md",
+      "sizeBytes": 1050000,
+      "description": "El ninja Joe Musashi cabalga a caballo, surfea y desata ninjutsu letal contra el sindicato Neo Zeed.",
+      "genre": "Acción",
+      "releaseYear": 1993,
+      "maxPlayers": 1,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7n.jpg"
+    },
+    {
+      "id": "gen_gunstar",
+      "consoleId": "genesis",
+      "title": "Gunstar Heroes",
+      "fileUrl": "https://archive.org/download/sega_Gunstar_Heroes_USA/Gunstar%20Heroes%20%28USA%29.zip",
+      "isCompressed": true,
+      "internalRomName": "Gunstar Heroes (USA).md",
+      "expectedExtension": "md",
+      "sizeBytes": 1020000,
+      "description": "Obra de culto desarrollada por Treasure repleta de explosiones, jefes colosales y combinaciones de armas.",
+      "genre": "Run & Gun",
+      "releaseYear": 1993,
+      "maxPlayers": 2,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7o.jpg"
+    }
+  ]
+}

@@ -28,6 +28,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.material.icons.filled.CloudDownload
 import androidx.compose.material.icons.filled.Games
 import androidx.compose.material.icons.filled.Person
@@ -156,11 +157,16 @@ fun CatalogScreen(
                 )
         )
 
+        val context = LocalContext.current
+        val isTvDevice = remember { context.packageManager.hasSystemFeature(android.content.pm.PackageManager.FEATURE_LEANBACK) }
+        val horizontalPadding = if (isTvDevice) 36.dp else 16.dp
+        val verticalPadding = if (isTvDevice) 24.dp else 12.dp
+
         Row(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 36.dp, vertical = 24.dp),
-            horizontalArrangement = Arrangement.spacedBy(32.dp)
+                .padding(horizontal = horizontalPadding, vertical = verticalPadding),
+            horizontalArrangement = Arrangement.spacedBy(if (isTvDevice) 32.dp else 16.dp)
         ) {
             // --- LEFT COLUMN: GAME TILES GRID (TOUCH SWIPE + D-PAD NAVIGATION) ---
             Column(

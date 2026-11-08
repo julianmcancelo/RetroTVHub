@@ -28,6 +28,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Gamepad
 import androidx.compose.material3.Icon
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -155,11 +156,16 @@ fun HomeScreen(
                 )
         )
 
+        val context = LocalContext.current
+        val isTvDevice = remember { context.packageManager.hasSystemFeature(android.content.pm.PackageManager.FEATURE_LEANBACK) }
+        val horizontalPadding = if (isTvDevice) 40.dp else 16.dp
+        val verticalPadding = if (isTvDevice) 24.dp else 12.dp
+
         // Main content column
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 40.dp, vertical = 24.dp),
+                .padding(horizontal = horizontalPadding, vertical = verticalPadding),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             // --- 1. PS5 TOP BAR COMPONENT ---

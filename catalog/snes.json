@@ -1,0 +1,82 @@
+{
+  "consoleId": "snes",
+  "consoleName": "SUPER NINTENDO (SNES)",
+  "count": 5,
+  "games": [
+    {
+      "id": "snes_smw",
+      "consoleId": "snes",
+      "title": "Super Mario World",
+      "fileUrl": "https://archive.org/download/snes_Super_Mario_World_USA/Super%20Mario%20World%20%28USA%29.zip",
+      "isCompressed": true,
+      "internalRomName": "Super Mario World (USA).sfc",
+      "expectedExtension": "sfc",
+      "sizeBytes": 346000,
+      "description": "El debut triunfal de Mario en los 16 bits. Explora Dinosaur Land, descubre caminos secretos y cabalga con Yoshi en una aventura inmortal.",
+      "genre": "Plataformas",
+      "releaseYear": 1990,
+      "maxPlayers": 2,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7d.jpg"
+    },
+    {
+      "id": "snes_zelda",
+      "consoleId": "snes",
+      "title": "The Legend of Zelda: A Link to the Past",
+      "fileUrl": "https://archive.org/download/snes_The_Legend_of_Zelda_A_Link_to_the_Past_USA/The%20Legend%20of%20Zelda%20-%20A%20Link%20to%20the%20Past%20%28USA%29.zip",
+      "isCompressed": true,
+      "internalRomName": "The Legend of Zelda - A Link to the Past (USA).sfc",
+      "expectedExtension": "sfc",
+      "sizeBytes": 780000,
+      "description": "Viaja entre el Mundo de la Luz y la Tierra Sombría para rescatar a las doncellas y derrotar a Ganon en uno de los mejores RPG de la historia.",
+      "genre": "Acción / Aventura",
+      "releaseYear": 1991,
+      "maxPlayers": 1,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7h.jpg"
+    },
+    {
+      "id": "snes_dkc",
+      "consoleId": "snes",
+      "title": "Donkey Kong Country",
+      "fileUrl": "https://archive.org/download/snes_Donkey_Kong_Country_USA/Donkey%20Kong%20Country%20%28USA%29.zip",
+      "isCompressed": true,
+      "internalRomName": "Donkey Kong Country (USA).sfc",
+      "expectedExtension": "sfc",
+      "sizeBytes": 2400000,
+      "description": "Gráficos prerenderizados revolucionarios de Rareware y una banda sonora legendaria junto a Donkey y Diddy Kong.",
+      "genre": "Plataformas",
+      "releaseYear": 1994,
+      "maxPlayers": 2,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1v9x.jpg"
+    },
+    {
+      "id": "snes_metroid",
+      "consoleId": "snes",
+      "title": "Super Metroid",
+      "fileUrl": "https://archive.org/download/snes_Super_Metroid_USA/Super%20Metroid%20%28USA%29.zip",
+      "isCompressed": true,
+      "internalRomName": "Super Metroid (USA).sfc",
+      "expectedExtension": "sfc",
+      "sizeBytes": 2100000,
+      "description": "Atmósfera opresiva y diseño de niveles maestro que definió el género Metroidvania en el planeta alienígena Zebes.",
+      "genre": "Metroidvania",
+      "releaseYear": 1994,
+      "maxPlayers": 1,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7e.jpg"
+    },
+    {
+      "id": "snes_sf2t",
+      "consoleId": "snes",
+      "title": "Street Fighter II Turbo",
+      "fileUrl": "https://archive.org/download/snes_Street_Fighter_II_Turbo_USA/Street%20Fighter%20II%20Turbo%20%28USA%29.zip",
+      "isCompressed": true,
+      "internalRomName": "Street Fighter II Turbo (USA).sfc",
+      "expectedExtension": "sfc",
+      "sizeBytes": 2200000,
+      "description": "El rey de las peleas arcade llevado a tu televisor y celular a máxima velocidad y con los jefes seleccionables.",
+      "genre": "Lucha",
+      "releaseYear": 1993,
+      "maxPlayers": 2,
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7f.jpg"
+    }
+  ]
+}

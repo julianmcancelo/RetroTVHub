@@ -115,6 +115,46 @@ static bool core_environment_cb(unsigned cmd, void *data) {
                     var->value = "cxd4";
                     return true;
                 }
+                if (strcmp(var->key, "parallel-n64-cpucore") == 0) {
+                    var->value = "dynamic_recompiler";
+                    return true;
+                }
+                if (strcmp(var->key, "parallel-n64-angrylion-multithread") == 0) {
+                    var->value = "all threads";
+                    return true;
+                }
+                if (strcmp(var->key, "parallel-n64-angrylion-vioverlay") == 0) {
+                    var->value = "Unfiltered";
+                    return true;
+                }
+                if (strcmp(var->key, "parallel-n64-angrylion-sync") == 0) {
+                    var->value = "Low";
+                    return true;
+                }
+                if (strcmp(var->key, "parallel-n64-gfxplugin-accuracy") == 0) {
+                    var->value = "low";
+                    return true;
+                }
+                if (strcmp(var->key, "parallel-n64-screensize") == 0) {
+                    var->value = "320x240";
+                    return true;
+                }
+                if (strcmp(var->key, "parallel-n64-virefresh") == 0) {
+                    var->value = "1500";
+                    return true;
+                }
+                if (strcmp(var->key, "parallel-n64-framerate") == 0) {
+                    var->value = "fullspeed";
+                    return true;
+                }
+                if (strcmp(var->key, "pcsx_rearmed_drc") == 0) {
+                    var->value = "enabled";
+                    return true;
+                }
+                if (strcmp(var->key, "pcsx_rearmed_frameskip") == 0) {
+                    var->value = "0";
+                    return true;
+                }
                 var->value = NULL;
             }
             return false;

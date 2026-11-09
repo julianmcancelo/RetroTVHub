@@ -53,6 +53,9 @@ class MainActivity : ComponentActivity() {
         // Core Libretro Bridge
         bridge = LibretroBridge()
 
+        val initialGameId = intent?.getStringExtra("launch_game_id")
+        val initialConsoleId = intent?.getStringExtra("launch_console_id")
+
         setContent {
             RetroTvTheme {
                 Surface(
@@ -63,6 +66,8 @@ class MainActivity : ComponentActivity() {
                         app = app,
                         bridge = bridge,
                         phoneServer = phoneServer,
+                        initialConsoleId = initialConsoleId,
+                        initialGameId = initialGameId,
                         onLaunchExternalPS2 = { game, romFile ->
                             launchPS2External(game, romFile)
                         }
@@ -97,10 +102,26 @@ fun AppNavigationHost(
     app: RetroApplication,
     bridge: LibretroBridge,
     phoneServer: PhoneControllerServer,
+    initialConsoleId: String? = null,
+    initialGameId: String? = null,
     onLaunchExternalPS2: (GameEntry, File) -> Unit
 ) {
     var currentScreen by remember { mutableStateOf<TvScreen>(TvScreen.Home) }
     val serverUrl = remember { phoneServer.getLocalServerUrl() }
+
+    LaunchedEffect(initialConsoleId, initialGameId) {
+        if (!initialConsoleId.isNullOrBlank() && !initialGameId.isNullOrBlank()) {
+            val catalogRes = app.repositoryClient.fetchConsoleCatalog("", initialConsoleId)
+            val catalog = catalogRes.getOrNull() ?: com.retro.tvbox.repository.RepositoryClient.createBuiltinCatalog(initialConsoleId)
+            val targetGame = catalog.games.firstOrNull { it.id == initialGameId }
+            if (targetGame != null) {
+                val romFile = app.cacheManager.getRomFile(targetGame.id, targetGame.expectedExtension)
+                if (romFile.exists() && romFile.length() > 1024) {
+                    currentScreen = TvScreen.Player(targetGame, romFile)
+                }
+            }
+        }
+    }
 
     BackHandler(enabled = currentScreen !is TvScreen.Home) {
         currentScreen = when (currentScreen) {

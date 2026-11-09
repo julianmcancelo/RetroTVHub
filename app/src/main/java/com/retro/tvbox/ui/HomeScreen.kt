@@ -117,11 +117,17 @@ fun HomeScreen(
     onLaunchGame: (GameEntry, File) -> Unit = { _, _ -> },
     biosManager: BiosManager = remember { RetroApplication.instance.biosManager }
 ) {
-    var consoles by remember { mutableStateOf<List<ConsoleManifest>>(emptyList()) }
+    var consoles by remember { mutableStateOf<List<ConsoleManifest>>(RepositoryClient.createBuiltinFactoryIndex().consoles) }
     var focusedConsoleIndex by remember { mutableStateOf(0) }
     var selectedTopTab by remember { mutableStateOf("Games") }
 
-    val gamesByConsole = remember { mutableStateMapOf<String, List<GameEntry>>() }
+    val gamesByConsole = remember {
+        mutableStateMapOf<String, List<GameEntry>>().apply {
+            RepositoryClient.createBuiltinFactoryIndex().consoles.forEach { console ->
+                put(console.id, RepositoryClient.createBuiltinCatalog(console.id).games)
+            }
+        }
+    }
     val activeDownloads = remember { mutableStateMapOf<String, DownloadProgress>() }
 
     var showQrDialog by remember { mutableStateOf(false) }

@@ -13,10 +13,23 @@
 - **100% Responsive:** Navegación por gestos táctiles (swipe/tap) en celulares y por control remoto / D-pad en televisores Android TV.
 
 ### ⚙️ Motor de Emulación Libretro Oficial
-- **Descarga dinámica de núcleos (`CoreManager`):** Descarga núcleos oficiales directamente desde el Buildbot de Libretro (`snes9x`, `fceumm`, `genesis_plus_gx`, `pcsx_rearmed`, `mupen64plus_next`, `mgba`) adaptados a la arquitectura del dispositivo (`arm64-v8a`, `armeabi-v7a`, `x86_64`, `x86`).
+- **Descarga dinámica de núcleos (`CoreManager`):** Descarga núcleos oficiales directamente desde el Buildbot de Libretro (`snes9x`, `fceumm`, `genesis_plus_gx`, `pcsx_rearmed`, `parallel_n64`, `mgba`) adaptados a la arquitectura del dispositivo (`arm64-v8a`, `armeabi-v7a`, `x86_64`, `x86`).
+- **Optimización nativa PS1 y N64 (`bridge.cpp`):**
+  - **PlayStation 1 (`pcsx_rearmed`):** Soporte nativo `need_fullpath` para carga directa de imágenes comprimidas **`.chd`**, `.bin`/`.cue`, `.iso` y `.pbp` con Dynamic Recompiler (`drc`) activo a 60 FPS.
+  - **Nintendo 64 (`parallel_n64`):** Renderizado por software multihilo (`angrylion` + `cxd4` RSP + `dynamic_recompiler`) compatible con GPUs de televisores Android TV (`armeabi-v7a` / `arm64-v8a`) sin requerir OpenGL ES 3.1+.
 - **Seguridad binaria:** Validación estricta de cabecera binaria ELF y protección contra ataques *Zip-Slip*.
-- **Audio estéreo de baja latencia:** Pipeline `AudioTrack` PCM a 44.1 kHz.
+- **Audio estéreo de baja latencia:** Pipeline `AudioTrack` PCM a 44.1 kHz en modo `WRITE_NON_BLOCKING` para evitar bloqueos de frame en el hilo JNI.
 - **Renderizado 60 FPS con frame skipping inteligente:** Mantiene sincronizados audio y video en dispositivos modestos.
+
+### 📚 Catálogo Integrado de 129 Juegos Clásicos + Importador Local
+- **129 Clásicos Preconfigurados (OTA + Offline Bundle):**
+  - **PlayStation 1 (35 juegos `.chd`):** *Crash Team Racing*, *Silent Hill*, *Resident Evil 1, 2 y 3*, *Gran Turismo 1 y 2*, *Final Fantasy VI, VIII, IX y Tactics*, *Tekken 3*, *Castlevania: Symphony of the Night*, *Metal Gear Solid*, *Pepsiman*, *Winning Eleven 2002*, *Dino Crisis 1 y 2*, *Spyro 1-3*, *Crash Bandicoot 1-3*, *Tony Hawk's Pro Skater 2*, *Marvel vs. Capcom*, y más.
+  - **Super Nintendo (20 juegos):** *Super Mario World*, *Zelda: A Link to the Past*, *Chrono Trigger*, *Donkey Kong Country 1-3*, *Super Metroid*, *Super Mario RPG*, *Street Fighter II Turbo*, *Ultimate Mortal Kombat 3*, *International Superstar Soccer Deluxe*, y más.
+  - **Nintendo 64 (18 juegos):** *Zelda: Ocarina of Time*, *Majora's Mask*, *Super Mario 64*, *Mario Kart 64*, *Star Fox 64*, *Banjo-Kazooie*, *Donkey Kong 64*, *Paper Mario*, *Mario Party 1-3*, *Conker's Bad Fur Day*, *Resident Evil 2*, y más.
+  - **Family Game / NES (18 juegos):** *Super Mario Bros. 1-3*, *Contra*, *Castlevania I y III*, *Mega Man 2 y 3*, *Punch-Out!!*, *Ninja Gaiden*, *Battletoads*, *Pac-Man*, y más.
+  - **Sega Genesis (18 juegos):** *Sonic 1, 2 y Sonic & Knuckles*, *Streets of Rage 2 y 3*, *Gunstar Heroes*, *Contra: Hard Corps*, *Comix Zone*, *Ultimate Mortal Kombat 3*, *Earthworm Jim*, y más.
+  - **Game Boy Advance (20 juegos):** *Pokémon Edición Esmeralda*, *Zelda: The Minish Cap*, *Metroid Fusion & Zero Mission*, *Castlevania: Aria of Sorrow*, *Golden Sun*, *Fire Emblem*, *Final Fantasy VI Advance*, *Mario & Luigi: Superstar Saga*, y más.
+- **Escáner de ROMs Externas (`ExternalRomScanner`):** Detecta automáticamente ROMs descargadas desde el navegador (como *WowROMs* o *Archive.org*) en la carpeta `Downloads` o unidades USB, descomprime archivos `.zip` al vuelo y los integra en tu biblioteca.
 
 ### 💾 Almacenamiento, BIOS y Play-on-Demand
 - **Gestor automático de BIOS (`BiosManager`):** Detección y descarga en 1 clic de BIOS para PS1 (`scph1001.bin`), PS2 (`scph39001.bin`) y GBA (`gba_bios.bin`), más selector manual para importar archivos locales o pendrives USB.

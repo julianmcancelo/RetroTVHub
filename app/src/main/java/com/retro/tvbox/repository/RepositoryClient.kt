@@ -120,6 +120,17 @@ class RepositoryClient(private val context: Context) {
         }
     }
 
+    fun loadAssetCatalogSync(consoleId: String): ConsoleCatalog {
+        return try {
+            context.assets.open("catalog/${consoleId}.json").use { stream ->
+                val assetJson = stream.bufferedReader().readText()
+                json.decodeFromString<ConsoleCatalog>(assetJson)
+            }
+        } catch (_: Exception) {
+            createBuiltinCatalog(consoleId)
+        }
+    }
+
     companion object {
         const val DEFAULT_REPO_URL = "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/index.json"
 

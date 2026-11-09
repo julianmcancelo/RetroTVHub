@@ -124,7 +124,7 @@ fun HomeScreen(
     val gamesByConsole = remember {
         mutableStateMapOf<String, List<GameEntry>>().apply {
             RepositoryClient.createBuiltinFactoryIndex().consoles.forEach { console ->
-                put(console.id, RepositoryClient.createBuiltinCatalog(console.id).games)
+                put(console.id, repoClient.loadAssetCatalogSync(console.id).games)
             }
         }
     }

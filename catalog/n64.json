@@ -15,7 +15,7 @@
       "genre": "Acción / Aventura",
       "releaseYear": 1998,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7x.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_64/master/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20Ocarina%20of%20Time%20(USA).png"
     },
     {
       "id": "n64_sm64",
@@ -29,7 +29,7 @@
       "genre": "Plataformas 3D",
       "releaseYear": 1996,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7v.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_64/master/Named_Boxarts/Super%20Mario%2064%20(USA).png"
     },
     {
       "id": "n64_mk64",
@@ -43,7 +43,7 @@
       "genre": "Carreras",
       "releaseYear": 1996,
       "maxPlayers": 4,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7w.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_64/master/Named_Boxarts/Mario%20Kart%2064%20(USA).png"
     },
     {
       "id": "n64_starfox",
@@ -57,7 +57,7 @@
       "genre": "Shooter 3D",
       "releaseYear": 1997,
       "maxPlayers": 4,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x86.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_64/master/Named_Boxarts/Star%20Fox%2064%20(USA).png"
     },
     {
       "id": "n64_banjo",
@@ -71,7 +71,7 @@
       "genre": "Plataformas 3D",
       "releaseYear": 1998,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7v.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_64/master/Named_Boxarts/Banjo-Kazooie%20(USA).png"
     },
     {
       "id": "n64_dk64",
@@ -85,7 +85,7 @@
       "genre": "Plataformas 3D",
       "releaseYear": 1999,
       "maxPlayers": 4,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1v9x.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_64/master/Named_Boxarts/Donkey%20Kong%2064%20(USA).png"
     },
     {
       "id": "n64_dkr",
@@ -99,7 +99,7 @@
       "genre": "Carreras / Aventura",
       "releaseYear": 1997,
       "maxPlayers": 4,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7w.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_64/master/Named_Boxarts/Diddy%20Kong%20Racing%20(USA)%20(En%2CFr).png"
     },
     {
       "id": "n64_paper_mario",
@@ -113,7 +113,7 @@
       "genre": "RPG",
       "releaseYear": 2000,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7v.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_64/master/Named_Boxarts/Paper%20Mario%20(USA).png"
     },
     {
       "id": "n64_majora",
@@ -127,7 +127,7 @@
       "genre": "Acción / Aventura",
       "releaseYear": 2000,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7x.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_64/master/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20Majora's%20Mask%20(USA).png"
     },
     {
       "id": "n64_mp1",
@@ -141,7 +141,7 @@
       "genre": "Party / Multijugador",
       "releaseYear": 1998,
       "maxPlayers": 4,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7v.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_64/master/Named_Boxarts/Mario%20Party%20(USA).png"
     },
     {
       "id": "n64_mp2",
@@ -155,7 +155,7 @@
       "genre": "Party / Multijugador",
       "releaseYear": 1999,
       "maxPlayers": 4,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7v.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_64/master/Named_Boxarts/Mario%20Party%202%20(USA).png"
     },
     {
       "id": "n64_mp3",
@@ -169,7 +169,7 @@
       "genre": "Party / Multijugador",
       "releaseYear": 2000,
       "maxPlayers": 4,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7v.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_64/master/Named_Boxarts/Mario%20Party%203%20(USA).png"
     },
     {
       "id": "n64_fzerox",
@@ -183,7 +183,7 @@
       "genre": "Carreras Futuristas",
       "releaseYear": 1998,
       "maxPlayers": 4,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7w.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_64/master/Named_Boxarts/F-Zero%20X%20(USA).png"
     },
     {
       "id": "n64_kirby64",
@@ -197,7 +197,7 @@
       "genre": "Plataformas",
       "releaseYear": 2000,
       "maxPlayers": 4,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7v.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_64/master/Named_Boxarts/Kirby%2064%20-%20The%20Crystal%20Shards%20(USA).png"
     },
     {
       "id": "n64_conker",
@@ -211,7 +211,7 @@
       "genre": "Plataformas / Acción",
       "releaseYear": 2001,
       "maxPlayers": 4,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7v.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_64/master/Named_Boxarts/Conker's%20Bad%20Fur%20Day%20(USA).png"
     },
     {
       "id": "n64_mk4",
@@ -225,7 +225,7 @@
       "genre": "Lucha 3D",
       "releaseYear": 1998,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8q.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_64/master/Named_Boxarts/Mortal%20Kombat%204%20(USA).png"
     },
     {
       "id": "n64_rayman2",
@@ -239,7 +239,7 @@
       "genre": "Plataformas 3D",
       "releaseYear": 1999,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7v.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_64/master/Named_Boxarts/Rayman%202%20-%20The%20Great%20Escape%20(USA)%20(En%2CFr%2CDe%2CEs%2CIt).png"
     },
     {
       "id": "n64_re2",
@@ -253,7 +253,7 @@
       "genre": "Survival Horror",
       "releaseYear": 1999,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8b.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_64/master/Named_Boxarts/Resident%20Evil%202%20(USA).png"
     }
   ]
 }

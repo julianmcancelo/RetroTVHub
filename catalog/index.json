@@ -1,61 +1,107 @@
 {
   "repoName": "RetroTV Hub Oficial",
-  "version": 1,
+  "version": 2,
   "description": "Repositorio maestro de consolas retro verificado para Android TV y Smartphones",
   "consoles": [
     {
-      "id": "snes",
-      "name": "Super Nintendo (SNES)",
-      "manufacturer": "Nintendo",
-      "releaseYear": 1990,
-      "supportedExtensions": ["sfc", "smc", "zip"],
-      "defaultCore": "snes9x_libretro_android.so",
-      "catalogUrl": "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/snes.json"
-    },
-    {
-      "id": "nes",
-      "name": "Family Game / NES",
-      "manufacturer": "Nintendo",
-      "releaseYear": 1983,
-      "supportedExtensions": ["nes", "zip"],
-      "defaultCore": "fceumm_libretro_android.so",
-      "catalogUrl": "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/nes.json"
-    },
-    {
-      "id": "genesis",
-      "name": "Sega Genesis / Mega Drive",
-      "manufacturer": "Sega",
-      "releaseYear": 1988,
-      "supportedExtensions": ["md", "bin", "gen", "zip"],
-      "defaultCore": "genesis_plus_gx_libretro_android.so",
-      "catalogUrl": "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/genesis.json"
-    },
-    {
-      "id": "gba",
-      "name": "Game Boy Advance",
-      "manufacturer": "Nintendo",
-      "releaseYear": 2001,
-      "supportedExtensions": ["gba", "zip"],
-      "defaultCore": "mgba_libretro_android.so",
-      "catalogUrl": "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/gba.json"
+      "id": "ps2",
+      "name": "Sony PlayStation 2 (PS2)",
+      "manufacturer": "Sony",
+      "releaseYear": 2000,
+      "supportedExtensions": [
+        "chd",
+        "iso",
+        "cso",
+        "bin"
+      ],
+      "defaultCore": "pcsx2_libretro_android.so",
+      "catalogUrl": "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/ps2.json",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/0/00/PlayStation_2_logo.svg"
     },
     {
       "id": "psx",
       "name": "Sony PlayStation 1 (PSX)",
       "manufacturer": "Sony",
       "releaseYear": 1994,
-      "supportedExtensions": ["chd", "iso", "bin", "cue"],
+      "supportedExtensions": [
+        "chd",
+        "iso",
+        "bin",
+        "cue"
+      ],
       "defaultCore": "pcsx_rearmed_libretro_android.so",
-      "catalogUrl": "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/psx.json"
+      "catalogUrl": "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/psx.json",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Playstation_logo_colour.svg"
+    },
+    {
+      "id": "snes",
+      "name": "Super Nintendo (SNES)",
+      "manufacturer": "Nintendo",
+      "releaseYear": 1990,
+      "supportedExtensions": [
+        "sfc",
+        "smc",
+        "zip"
+      ],
+      "defaultCore": "snes9x_libretro_android.so",
+      "catalogUrl": "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/snes.json",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/2/22/Super_Nintendo_Entertainment_System_logo.svg"
+    },
+    {
+      "id": "nes",
+      "name": "Family Game / NES",
+      "manufacturer": "Nintendo",
+      "releaseYear": 1983,
+      "supportedExtensions": [
+        "nes",
+        "zip"
+      ],
+      "defaultCore": "fceumm_libretro_android.so",
+      "catalogUrl": "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/nes.json",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0d/NES_logo.svg"
+    },
+    {
+      "id": "genesis",
+      "name": "Sega Genesis / Mega Drive",
+      "manufacturer": "Sega",
+      "releaseYear": 1988,
+      "supportedExtensions": [
+        "md",
+        "bin",
+        "gen",
+        "zip"
+      ],
+      "defaultCore": "genesis_plus_gx_libretro_android.so",
+      "catalogUrl": "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/genesis.json",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Sega_genesis_logo.svg"
+    },
+    {
+      "id": "gba",
+      "name": "Game Boy Advance",
+      "manufacturer": "Nintendo",
+      "releaseYear": 2001,
+      "supportedExtensions": [
+        "gba",
+        "zip"
+      ],
+      "defaultCore": "mgba_libretro_android.so",
+      "catalogUrl": "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/gba.json",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/3/36/Game_Boy_Advance_logo.svg"
     },
     {
       "id": "n64",
       "name": "Nintendo 64",
       "manufacturer": "Nintendo",
       "releaseYear": 1996,
-      "supportedExtensions": ["z64", "n64", "v64", "zip"],
+      "supportedExtensions": [
+        "z64",
+        "n64",
+        "v64",
+        "zip"
+      ],
       "defaultCore": "mupen64plus_next_libretro_android.so",
-      "catalogUrl": "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/n64.json"
+      "catalogUrl": "https://raw.githubusercontent.com/julianmcancelo/RetroTVHub/main/catalog/n64.json",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/0/04/Nintendo_64_Logo.svg"
     }
   ]
 }

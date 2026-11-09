@@ -147,12 +147,68 @@ static bool core_environment_cb(unsigned cmd, void *data) {
                     var->value = "fullspeed";
                     return true;
                 }
+#if defined(__arm__) || defined(__aarch64__)
                 if (strcmp(var->key, "pcsx_rearmed_drc") == 0) {
                     var->value = "enabled";
                     return true;
                 }
+#else
+                if (strcmp(var->key, "pcsx_rearmed_drc") == 0) {
+                    var->value = "disabled";
+                    return true;
+                }
+#endif
                 if (strcmp(var->key, "pcsx_rearmed_frameskip") == 0) {
                     var->value = "0";
+                    return true;
+                }
+                if (strcmp(var->key, "pcsx_rearmed_bios") == 0) {
+                    var->value = "auto";
+                    return true;
+                }
+                if (strcmp(var->key, "pcsx_rearmed_region") == 0) {
+                    var->value = "auto";
+                    return true;
+                }
+                if (strcmp(var->key, "pcsx_rearmed_pad1type") == 0 || strcmp(var->key, "pcsx_rearmed_pad2type") == 0) {
+                    var->value = "standard";
+                    return true;
+                }
+                if (strcmp(var->key, "pcsx_rearmed_show_bios_bootlogo") == 0) {
+                    var->value = "disabled";
+                    return true;
+                }
+                if (strcmp(var->key, "pcsx_rearmed_spu_interpolation") == 0) {
+                    var->value = "simple";
+                    return true;
+                }
+                if (strcmp(var->key, "pcsx_rearmed_neon_interlace_enable") == 0 ||
+                    strcmp(var->key, "pcsx_rearmed_neon_interlace_enable_v2") == 0) {
+                    var->value = "disabled";
+                    return true;
+                }
+                if (strcmp(var->key, "pcsx_rearmed_neon_enhancement_enable") == 0) {
+                    var->value = "disabled";
+                    return true;
+                }
+                if (strcmp(var->key, "pcsx_rearmed_neon_enhancement_no_main") == 0) {
+                    var->value = "disabled";
+                    return true;
+                }
+                if (strcmp(var->key, "pcsx_rearmed_neon_enhancement_tex_adj_v2") == 0) {
+                    var->value = "disabled";
+                    return true;
+                }
+                if (strcmp(var->key, "pcsx_rearmed_gpu_slow_llists") == 0) {
+                    var->value = "auto";
+                    return true;
+                }
+                if (strcmp(var->key, "pcsx_rearmed_gpu_thread_rendering") == 0) {
+                    var->value = "disabled";
+                    return true;
+                }
+                if (strcmp(var->key, "pcsx_rearmed_scale_hires") == 0) {
+                    var->value = "disabled";
                     return true;
                 }
                 var->value = NULL;
@@ -195,6 +251,29 @@ static bool core_environment_cb(unsigned cmd, void *data) {
             return true;
         }
 
+        case RETRO_ENVIRONMENT_SET_SYSTEM_AV_INFO: {
+            const struct retro_system_av_info *av_info = (const struct retro_system_av_info *)data;
+            if (av_info) {
+                g_av_info = *av_info;
+                if (g_native_window && av_info->geometry.base_width > 0 && av_info->geometry.base_height > 0) {
+                    ANativeWindow_setBuffersGeometry(g_native_window, av_info->geometry.base_width, av_info->geometry.base_height, WINDOW_FORMAT_RGBA_8888);
+                }
+            }
+            return true;
+        }
+
+        case RETRO_ENVIRONMENT_SET_CONTROLLER_INFO: {
+            return true;
+        }
+
+        case RETRO_ENVIRONMENT_SET_INPUT_DESCRIPTORS: {
+            return true;
+        }
+
+        case RETRO_ENVIRONMENT_SET_DISK_CONTROL_INTERFACE: {
+            return true;
+        }
+
         case RETRO_ENVIRONMENT_GET_LOG_INTERFACE: {
             struct retro_log_callback *cb = (struct retro_log_callback *)data;
             if (cb) {
@@ -210,6 +289,8 @@ static bool core_environment_cb(unsigned cmd, void *data) {
 }
 
 // Video refresh callback: copies emulated pixels directly to ANativeWindow buffer
+static uint64_t g_video_frame_count = 0;
+
 static void core_video_refresh_cb(const void *data, unsigned width, unsigned height, size_t pitch) {
     if (!data || !g_native_window || width == 0 || height == 0) return;
 
@@ -217,11 +298,21 @@ static void core_video_refresh_cb(const void *data, unsigned width, unsigned hei
         g_current_buf_width = width;
         g_current_buf_height = height;
         ANativeWindow_setBuffersGeometry(g_native_window, width, height, WINDOW_FORMAT_RGBA_8888);
+        LOGI("ANativeWindow buffers geometry adjusted: %ux%u", width, height);
     }
 
     ANativeWindow_Buffer win_buffer;
-    if (ANativeWindow_lock(g_native_window, &win_buffer, NULL) < 0) {
+    int lock_res = ANativeWindow_lock(g_native_window, &win_buffer, NULL);
+    if (lock_res < 0) {
+        if (g_video_frame_count % 60 == 0) {
+            LOGW("ANativeWindow_lock failed with code: %d", lock_res);
+        }
         return;
+    }
+    g_video_frame_count++;
+    if (g_video_frame_count % 120 == 1) {
+        LOGI("core_video_refresh_cb: frame=%llu, geom=%ux%u, win_buffer=%dx%d stride=%d, format=%d",
+             (unsigned long long)g_video_frame_count, width, height, win_buffer.width, win_buffer.height, win_buffer.stride, win_buffer.format);
     }
 
     uint32_t *dst_row = (uint32_t *)win_buffer.bits;
@@ -315,6 +406,17 @@ static void core_input_poll_cb(void) {
 static int16_t core_input_state_cb(unsigned port, unsigned device, unsigned index, unsigned id) {
     if (port < 4 && device == RETRO_DEVICE_JOYPAD && id < 16) {
         return g_button_states[port][id] ? 1 : 0;
+    }
+    // If core queries analog sticks (e.g. DualShock mode or analog pad fallback),
+    // synthesize analog coordinates from digital D-pad if active
+    if (port < 4 && device == RETRO_DEVICE_ANALOG && index == RETRO_DEVICE_INDEX_ANALOG_LEFT) {
+        if (id == RETRO_DEVICE_ID_ANALOG_X) {
+            if (g_button_states[port][7]) return 0x7fff;  // RIGHT
+            if (g_button_states[port][6]) return -0x7fff; // LEFT
+        } else if (id == RETRO_DEVICE_ID_ANALOG_Y) {
+            if (g_button_states[port][5]) return 0x7fff;  // DOWN
+            if (g_button_states[port][4]) return -0x7fff; // UP
+        }
     }
     return 0;
 }
@@ -440,10 +542,22 @@ Java_com_retro_tvbox_core_LibretroBridge_nativeLoadGame(JNIEnv *env, jobject thi
     struct retro_game_info game_info = {0};
     game_info.path = rom_path;
 
-    // Si need_fullpath es false y la ROM es de tamaño cartucho (<= 32 MB),
-    // proveer los bytes en memoria RAM. Si need_fullpath es true (ej. PSX, N64),
+    // Disc-based images (.chd, .cue, .iso, .pbp) and systems requiring fullpath must never load into RAM buffer
+    const char *ext = strrchr(rom_path, '.');
+    bool is_disc_image = (ext != NULL) && (
+        strcasecmp(ext, ".chd") == 0 ||
+        strcasecmp(ext, ".cue") == 0 ||
+        strcasecmp(ext, ".iso") == 0 ||
+        strcasecmp(ext, ".pbp") == 0 ||
+        strcasecmp(ext, ".bin") == 0 ||
+        strcasecmp(ext, ".mdf") == 0 ||
+        strcasecmp(ext, ".img") == 0
+    );
+
+    // Si need_fullpath es false, NO es una imagen de disco y la ROM es de tamaño cartucho (<= 32 MB),
+    // proveer los bytes en memoria RAM. Si need_fullpath es true o es imagen de disco (ej. PSX, N64),
     // dejar data = NULL y size = 0 pasando únicamente el path.
-    if (!sys_info.need_fullpath && g_rom_size > 0 && g_rom_size <= 32 * 1024 * 1024) {
+    if (!sys_info.need_fullpath && !is_disc_image && g_rom_size > 0 && g_rom_size <= 32 * 1024 * 1024) {
         if (g_rom_data) free(g_rom_data);
         g_rom_data = (uint8_t *)malloc(g_rom_size);
         if (g_rom_data) {

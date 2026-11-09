@@ -1,5 +1,6 @@
 package com.retro.tvbox.ui
 
+import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
@@ -80,14 +81,17 @@ import com.retro.tvbox.repository.GameEntry
 import com.retro.tvbox.repository.RepositoryClient
 import com.retro.tvbox.repository.UpdateInfo
 import com.retro.tvbox.repository.UpdateManager
+import com.retro.tvbox.ui.components.AppSettingsDialog
 import com.retro.tvbox.ui.components.BiosSettingsDialog
 import com.retro.tvbox.ui.components.CacheSettingsDialog
 import com.retro.tvbox.ui.components.QrCodeDialog
 import com.retro.tvbox.ui.components.UpdateDialog
+import com.retro.tvbox.ui.theme.AppThemeManager
 import com.retro.tvbox.ui.theme.NeonCyan
 import com.retro.tvbox.ui.theme.NeonPink
 import com.retro.tvbox.ui.theme.TextMuted
 import com.retro.tvbox.ui.theme.TextWhite
+import com.retro.tvbox.ui.theme.UiThemeStyle
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -97,14 +101,10 @@ import java.util.Date
 import java.util.Locale
 
 /**
- * Auténtica interfaz de inicio PlayStation 5 para RetroTV Hub.
- *
- * Reproduce fielmente el layout oficial de PS5:
- * 1. Barra superior con pestañas Games / Media a la izquierda y reloj/avatar a la derecha.
- * 2. Fila superior de iconos de consolas/apps con halo blanco y título inferior dinámico.
- * 3. Fondo dinámico de alta resolución con arte conceptual de la consola/juego enfocado.
- * 4. Área intermedia con metadatos y tipografía cinematográfica.
- * 5. Fila inferior de tarjetas de actividades/juegos con acción directa (JUGAR / DESCARGAR en 1 clic).
+ * Auténtica interfaz de inicio para RetroTV Hub adaptada con los 3 formatos visuales:
+ * - PlayStation 5 Horizon Experience
+ * - PlayStation 4 Dynamic Flow
+ * - Steam Big Picture Deck
  */
 @Composable
 fun HomeScreen(
@@ -130,11 +130,13 @@ fun HomeScreen(
     }
     val activeDownloads = remember { mutableStateMapOf<String, DownloadProgress>() }
 
+    var showSettingsDialog by remember { mutableStateOf(false) }
     var showQrDialog by remember { mutableStateOf(false) }
-    var showBiosDialog by remember { mutableStateOf(false) }
-    var showCacheDialog by remember { mutableStateOf(false) }
 
     val context = LocalContext.current
+    val currentTheme by AppThemeManager.currentTheme
+    val palette = remember(currentTheme) { AppThemeManager.getPalette(currentTheme) }
+
     val updateManager = remember { UpdateManager(context) }
     var availableUpdate by remember { mutableStateOf<UpdateInfo?>(null) }
     var isDownloadingUpdate by remember { mutableStateOf(false) }
@@ -168,7 +170,7 @@ fun HomeScreen(
             }
         } catch (_: Exception) {}
 
-        // Verificación OTA de actualización
+        // Verificación OTA de actualización al iniciar
         try {
             val updateRes = updateManager.checkForUpdates()
             availableUpdate = updateRes.getOrNull()
@@ -200,31 +202,37 @@ fun HomeScreen(
         }
     }
 
-    // --- CONTENEDOR PRINCIPAL PS5 ---
+    // --- CONTENEDOR PRINCIPAL CON TEMA ACTIVO ---
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF060913))
+            .background(palette.backgroundBase)
     ) {
-        // 1. Wallpaper de fondo de alta resolución con fundido elegante
+        // 1. Wallpaper de fondo con opacidad según el tema
+        val backdropAlpha = when (currentTheme) {
+            UiThemeStyle.PS5_HORIZON -> 0.38f
+            UiThemeStyle.PS4_DYNAMIC_FLOW -> 0.28f
+            UiThemeStyle.STEAM_DECK_BIG_PICTURE -> 0.32f
+        }
+
         AsyncImage(
             model = heroBackdropUrl,
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize(),
-            alpha = 0.38f
+            alpha = backdropAlpha
         )
 
-        // Degradados oscuros estilo PS5 (Vignette)
+        // Degradados de atmósfera dinámicos
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .background(
                     Brush.verticalGradient(
                         colors = listOf(
-                            Color(0xD9060913),
-                            Color(0x800A101E),
-                            Color(0xF2060913)
+                            palette.topGradientStart,
+                            palette.topGradientEnd,
+                            palette.bottomGradientEnd
                         )
                     )
                 )
@@ -237,7 +245,7 @@ fun HomeScreen(
                 .align(Alignment.TopEnd)
                 .background(
                     Brush.radialGradient(
-                        colors = listOf(Color(0xFF00E5FF).copy(alpha = 0.08f), Color.Transparent),
+                        colors = listOf(palette.accentColor.copy(alpha = 0.08f), Color.Transparent),
                         radius = 600f
                     )
                 )
@@ -250,14 +258,15 @@ fun HomeScreen(
                 .padding(horizontal = 36.dp, vertical = 20.dp),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
-            // --- A. BARRA SUPERIOR AUTÉNTICA PS5 ---
+            // --- A. BARRA SUPERIOR AUTÉNTICA ---
             Ps5OfficialHeader(
                 selectedTab = selectedTopTab,
                 onTabSelected = { selectedTopTab = it },
                 onOpenSearch = { /* Search */ },
-                onOpenSettings = { showBiosDialog = true },
+                onOpenSettings = { showSettingsDialog = true },
                 onOpenMemCards = onOpenMemCards,
-                onConnectPhone = { showQrDialog = true }
+                onConnectPhone = { showQrDialog = true },
+                accentColor = palette.accentColor
             )
 
             // --- B. FILA DE ICONOS DE CONSOLAS / APPS (Top Icon Row) ---
@@ -277,6 +286,7 @@ fun HomeScreen(
                         Ps5ConsoleTile(
                             console = console,
                             isSelected = isSelected,
+                            focusBorderColor = palette.focusBorderColor,
                             modifier = if (isFirst) Modifier.focusRequester(firstConsoleFocus) else Modifier,
                             onFocused = { focusedConsoleIndex = index },
                             onClick = { onConsoleSelected(console) }
@@ -310,7 +320,7 @@ fun HomeScreen(
                             text = "${console.manufacturer.uppercase()}  •  AÑO ${console.releaseYear}  •  ${console.supportedExtensions.joinToString("/").uppercase()}",
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color(0xFF00E5FF),
+                            color = palette.accentColor,
                             letterSpacing = 1.2.sp
                         )
                     }
@@ -330,7 +340,7 @@ fun HomeScreen(
                     Text(
                         text = "Revive los títulos más aclamados con renderizado nativo a 60 FPS, partidas automáticas y compatibilidad total con mandos físicos y celular.",
                         fontSize = 13.sp,
-                        color = Color(0xFFB0BDD0),
+                        color = palette.textSecondary,
                         maxLines = 2,
                         lineHeight = 18.sp,
                         modifier = Modifier.fillMaxWidth(0.65f)
@@ -338,7 +348,7 @@ fun HomeScreen(
                 }
             }
 
-            // --- D. FILA INFERIOR: TARJETAS DE ACTIVIDADES Y JUEGOS PS5 ---
+            // --- D. FILA INFERIOR: TARJETAS DE ACTIVIDADES Y JUEGOS ---
             Column(
                 modifier = Modifier.fillMaxWidth()
             ) {
@@ -346,7 +356,7 @@ fun HomeScreen(
                     text = "TÍTULOS DESTACADOS  •  PLAY-ON-DEMAND",
                     fontSize = 11.sp,
                     fontWeight = FontWeight.Black,
-                    color = Color(0xFF8E9BAE),
+                    color = palette.textSecondary,
                     letterSpacing = 1.5.sp,
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
@@ -368,6 +378,8 @@ fun HomeScreen(
                             game = game,
                             isCached = isCached,
                             downloadStatus = downloadStatus,
+                            accentColor = palette.accentColor,
+                            focusBorderColor = palette.focusBorderColor,
                             onClick = {
                                 val local = File(game.fileUrl)
                                 if (local.exists() && local.length() > 0) {
@@ -376,12 +388,16 @@ fun HomeScreen(
                                     val romFile = cacheManager.getRomFile(game.id, game.expectedExtension)
                                     onLaunchGame(game, romFile)
                                 } else {
-                                    // Descarga Play-on-Demand persistente
+                                    // Descarga Play-on-Demand persistente con logs y feedback en vivo
+                                    Toast.makeText(context, "Iniciando descarga de ${game.title}...", Toast.LENGTH_SHORT).show()
                                     RetroApplication.instance.applicationScope.launch {
                                         downloader.downloadGame(game).collect { progress ->
                                             activeDownloads[game.id] = progress
                                             if (progress is DownloadProgress.Completed) {
+                                                Toast.makeText(context, "¡${game.title} listo para jugar!", Toast.LENGTH_SHORT).show()
                                                 onLaunchGame(game, progress.destinationFile)
+                                            } else if (progress is DownloadProgress.Failed) {
+                                                Toast.makeText(context, "Error descargando: ${progress.error}", Toast.LENGTH_LONG).show()
                                             }
                                         }
                                     }
@@ -396,6 +412,7 @@ fun HomeScreen(
                             Ps5ExploreCatalogCard(
                                 console = console,
                                 totalGames = focusedGames.size,
+                                accentColor = palette.accentColor,
                                 onClick = { onConsoleSelected(console) }
                             )
                         }
@@ -404,17 +421,22 @@ fun HomeScreen(
             }
         }
 
-        // Diálogos modales del sistema
+        // --- DIÁLOGOS MODALES DEL SISTEMA ---
+        if (showSettingsDialog) {
+            AppSettingsDialog(
+                biosManager = biosManager,
+                cacheManager = cacheManager,
+                serverUrl = serverUrl,
+                onOpenQrModal = {
+                    showSettingsDialog = false
+                    showQrDialog = true
+                },
+                onDismissRequest = { showSettingsDialog = false }
+            )
+        }
+
         if (showQrDialog) {
             QrCodeDialog(serverUrl = serverUrl, onDismissRequest = { showQrDialog = false })
-        }
-
-        if (showBiosDialog) {
-            BiosSettingsDialog(biosManager = biosManager, onDismissRequest = { showBiosDialog = false })
-        }
-
-        if (showCacheDialog) {
-            CacheSettingsDialog(cacheManager = cacheManager, onDismissRequest = { showCacheDialog = false })
         }
 
         availableUpdate?.let { update ->
@@ -439,7 +461,7 @@ fun HomeScreen(
 }
 
 /**
- * Encabezado oficial PS5: Pestañas Games / Media y controles rápidos.
+ * Encabezado oficial: Pestañas Games / Media y controles rápidos.
  */
 @Composable
 fun Ps5OfficialHeader(
@@ -448,7 +470,8 @@ fun Ps5OfficialHeader(
     onOpenSearch: () -> Unit,
     onOpenSettings: () -> Unit,
     onOpenMemCards: () -> Unit,
-    onConnectPhone: () -> Unit
+    onConnectPhone: () -> Unit,
+    accentColor: Color = Color(0xFF00E5FF)
 ) {
     val currentTime = rememberTimeLive()
 
@@ -495,13 +518,13 @@ fun Ps5OfficialHeader(
             }
         }
 
-        // Derecha: Acciones rápidas (Búsqueda, Settings, Tarjetas, Mando Celular, Avatar, Reloj)
+        // Derecha: Acciones rápidas (Búsqueda, Settings / Engranaje Completo, MemCards, QR, Avatar, Reloj)
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Ps5HeaderIconButton(icon = Icons.Default.Search, contentDescription = "Buscar", onClick = onOpenSearch)
-            Ps5HeaderIconButton(icon = Icons.Default.Settings, contentDescription = "Ajustes de BIOS", onClick = onOpenSettings)
+            Ps5HeaderIconButton(icon = Icons.Default.Settings, contentDescription = "Ajustes y Personalización del Sistema", onClick = onOpenSettings)
             Ps5HeaderIconButton(icon = Icons.Default.Memory, contentDescription = "Tarjetas de Memoria", onClick = onOpenMemCards)
             Ps5HeaderIconButton(icon = Icons.Default.QrCode, contentDescription = "Conectar Celular", onClick = onConnectPhone)
 
@@ -516,7 +539,7 @@ fun Ps5OfficialHeader(
                 Icon(
                     imageVector = Icons.Default.SportsEsports,
                     contentDescription = null,
-                    tint = Color(0xFF00E5FF),
+                    tint = accentColor,
                     modifier = Modifier.size(20.dp)
                 )
                 // Online Dot
@@ -575,12 +598,13 @@ fun Ps5HeaderIconButton(
 }
 
 /**
- * Tile cuadrado de la fila superior de consolas estilo PS5.
+ * Tile cuadrado de la fila superior de consolas.
  */
 @Composable
 fun Ps5ConsoleTile(
     console: ConsoleManifest,
     isSelected: Boolean,
+    focusBorderColor: Color = Color.White,
     modifier: Modifier = Modifier,
     onFocused: () -> Unit,
     onClick: () -> Unit
@@ -616,7 +640,7 @@ fun Ps5ConsoleTile(
             .background(Brush.linearGradient(bgGradient))
             .border(
                 width = if (active) 2.5.dp else 1.dp,
-                color = if (active) Color.White else Color.White.copy(alpha = 0.12f),
+                color = if (active) focusBorderColor else Color.White.copy(alpha = 0.12f),
                 shape = RoundedCornerShape(16.dp)
             )
             .focusable(interactionSource = interactionSource)
@@ -652,6 +676,8 @@ fun Ps5GameActivityCard(
     game: GameEntry,
     isCached: Boolean,
     downloadStatus: DownloadProgress?,
+    accentColor: Color = Color(0xFF00E5FF),
+    focusBorderColor: Color = Color(0xFF00E5FF),
     onClick: () -> Unit
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -669,13 +695,13 @@ fun Ps5GameActivityCard(
             .background(Color(0xFF0F172A))
             .border(
                 width = if (isFocused) 2.5.dp else 1.dp,
-                color = if (isFocused) Color(0xFF00E5FF) else Color.White.copy(alpha = 0.08f),
+                color = if (isFocused) focusBorderColor else Color.White.copy(alpha = 0.08f),
                 shape = RoundedCornerShape(14.dp)
             )
             .focusable(interactionSource = interactionSource)
             .clickable(interactionSource = interactionSource, indication = null, onClick = onClick)
     ) {
-        // Thumbnail de la carátula o fondo genérico estilizado
+        // Thumbnail de la carátula
         if (!game.coverUrl.isNullOrBlank()) {
             AsyncImage(
                 model = game.coverUrl,
@@ -754,7 +780,7 @@ fun Ps5GameActivityCard(
                     if (isDownloading) {
                         CircularProgressIndicator(
                             modifier = Modifier.size(14.dp),
-                            color = Color(0xFF00E5FF),
+                            color = accentColor,
                             strokeWidth = 2.dp
                         )
                         val p = (downloadStatus as DownloadProgress.Downloading).percentage.toInt().coerceIn(0, 100)
@@ -762,7 +788,7 @@ fun Ps5GameActivityCard(
                             text = "DESCARGANDO $p%",
                             fontSize = 10.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color(0xFF00E5FF)
+                            color = accentColor
                         )
                     } else if (isCached) {
                         Box(
@@ -791,7 +817,7 @@ fun Ps5GameActivityCard(
                             modifier = Modifier
                                 .size(20.dp)
                                 .clip(CircleShape)
-                                .background(Color(0xFF00D2FF)),
+                                .background(accentColor),
                             contentAlignment = Alignment.Center
                         ) {
                             Icon(
@@ -805,7 +831,7 @@ fun Ps5GameActivityCard(
                             text = if (sizeMb > 0) "DESCARGAR (~$sizeMb MB)" else "DESCARGAR",
                             fontSize = 10.sp,
                             fontWeight = FontWeight.Black,
-                            color = Color(0xFF00E5FF)
+                            color = accentColor
                         )
                     }
                 }
@@ -821,6 +847,7 @@ fun Ps5GameActivityCard(
 fun Ps5ExploreCatalogCard(
     console: ConsoleManifest,
     totalGames: Int,
+    accentColor: Color = Color(0xFF00E5FF),
     onClick: () -> Unit
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -851,13 +878,13 @@ fun Ps5ExploreCatalogCard(
                 modifier = Modifier
                     .size(38.dp)
                     .clip(CircleShape)
-                    .background(Color(0x3300E5FF)),
+                    .background(accentColor.copy(alpha = 0.2f)),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowForward,
                     contentDescription = null,
-                    tint = Color(0xFF00E5FF),
+                    tint = accentColor,
                     modifier = Modifier.size(20.dp)
                 )
             }

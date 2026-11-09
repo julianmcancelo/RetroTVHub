@@ -233,7 +233,12 @@ fun PlayerScreen(
             val targetFrameTimeNs = 1_000_000_000L / 60L // 16.666.666 ns
             var nextFrameTime = System.nanoTime()
 
+            var loopCount = 0L
             while (isActive) {
+                loopCount++
+                if (loopCount % 120L == 1L) {
+                    android.util.Log.i("PlayerScreen", "Loop tick: err=" + loadError + " menu=" + showInGameMenu + " loading=" + isLoadingCore + " surfReady=" + isSurfaceReady + " state=" + bridge.currentState)
+                }
                 if (loadError == null && !showInGameMenu && !isLoadingCore && isSurfaceReady && (bridge.currentState == EmulatorState.RUNNING || bridge.currentState == EmulatorState.GAME_LOADED)) {
                     bridge.stepFrame()
                 }
@@ -260,13 +265,15 @@ fun PlayerScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Black)
+            .background(Color.Transparent)
     ) {
         // SurfaceView nativo para renderizado del pipeline de video a 60 FPS
         AndroidView(
             modifier = Modifier.fillMaxSize(),
             factory = { ctx ->
                 SurfaceView(ctx).apply {
+                    setZOrderOnTop(true)
+                    holder.setFormat(android.graphics.PixelFormat.TRANSLUCENT)
                     isFocusable = true
                     isFocusableInTouchMode = true
                     requestFocus()
@@ -276,9 +283,6 @@ fun PlayerScreen(
                         override fun surfaceCreated(holder: SurfaceHolder) {
                             bridge.setVideoSurface(holder.surface)
                             isSurfaceReady = true
-                            if (isLoadingCore) {
-                                drawLoadingScreen(holder, game.title)
-                            }
                         }
 
                         override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {

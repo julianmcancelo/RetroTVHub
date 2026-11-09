@@ -60,6 +60,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import androidx.compose.ui.layout.ContentScale
 import com.retro.tvbox.repository.CacheManager
 import com.retro.tvbox.repository.ConsoleManifest
 import com.retro.tvbox.repository.DownloadProgress
@@ -112,7 +114,7 @@ fun CatalogScreen(
     LaunchedEffect(console.id) {
         isLoadingCatalog = true
         val result = repoClient.fetchConsoleCatalog(console.catalogUrl, console.id)
-        val catalog = result.getOrNull() ?: RepositoryClient.createBuiltinCatalog(console.id)
+        val catalog = result.getOrNull() ?: repoClient.loadAssetCatalogSync(console.id)
         val localGames = try {
             ExternalRomScanner.scanAllExternalRoms(context).filter { it.consoleId == console.id }
         } catch (_: Exception) { emptyList() }

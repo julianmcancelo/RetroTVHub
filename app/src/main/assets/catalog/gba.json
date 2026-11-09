@@ -15,7 +15,7 @@
       "genre": "RPG / Colección",
       "releaseYear": 2004,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7p.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Pokemon%20-%20Emerald%20Version%20(USA%2C%20Europe).png"
     },
     {
       "id": "gba_zelda_minish",
@@ -29,7 +29,7 @@
       "genre": "Acción / Aventura",
       "releaseYear": 2004,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7q.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20The%20Minish%20Cap%20(USA).png"
     },
     {
       "id": "gba_metroid_fusion",
@@ -43,7 +43,7 @@
       "genre": "Metroidvania",
       "releaseYear": 2002,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7r.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Metroid%20Fusion%20(USA).png"
     },
     {
       "id": "gba_metroid_zm",
@@ -57,7 +57,7 @@
       "genre": "Metroidvania",
       "releaseYear": 2004,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7r.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Metroid%20-%20Zero%20Mission%20(USA).png"
     },
     {
       "id": "gba_castlevania_aria",
@@ -71,7 +71,7 @@
       "genre": "Metroidvania",
       "releaseYear": 2003,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x84.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Castlevania%20-%20Aria%20of%20Sorrow%20(USA).png"
     },
     {
       "id": "gba_mariokart",
@@ -85,7 +85,7 @@
       "genre": "Carreras",
       "releaseYear": 2001,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x85.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Mario%20Kart%20-%20Super%20Circuit%20(USA).png"
     },
     {
       "id": "gba_mario_luigi_ss",
@@ -99,7 +99,7 @@
       "genre": "RPG",
       "releaseYear": 2003,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7q.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Mario%20_%20Luigi%20-%20Superstar%20Saga%20(USA).png"
     },
     {
       "id": "gba_sma4_smb3",
@@ -113,7 +113,7 @@
       "genre": "Plataformas",
       "releaseYear": 2003,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7g.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Super%20Mario%20Advance%204%20-%20Super%20Mario%20Bros.%203%20(USA).png"
     },
     {
       "id": "gba_ffta",
@@ -127,7 +127,7 @@
       "genre": "RPG Táctico",
       "releaseYear": 2003,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7y.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Final%20Fantasy%20Tactics%20Advance%20(USA).png"
     },
     {
       "id": "gba_ff6a",
@@ -141,7 +141,7 @@
       "genre": "JRPG",
       "releaseYear": 2007,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7z.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Final%20Fantasy%20VI%20Advance%20(USA).png"
     },
     {
       "id": "gba_fire_emblem",
@@ -155,7 +155,7 @@
       "genre": "Estrategia / RPG",
       "releaseYear": 2005,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7q.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Fire%20Emblem%20-%20The%20Sacred%20Stones%20(USA%2C%20Australia).png"
     },
     {
       "id": "gba_golden_sun",
@@ -169,7 +169,7 @@
       "genre": "JRPG",
       "releaseYear": 2001,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7p.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Golden%20Sun%20(USA%2C%20Europe).png"
     },
     {
       "id": "gba_advance_wars",
@@ -183,7 +183,7 @@
       "genre": "Estrategia",
       "releaseYear": 2001,
       "maxPlayers": 4,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x85.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Advance%20Wars%20(USA).png"
     },
     {
       "id": "gba_sonic_advance",
@@ -197,7 +197,7 @@
       "genre": "Plataformas",
       "releaseYear": 2001,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7l.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Sonic%20Advance%20(USA)%20(En%2CJa).png"
     },
     {
       "id": "gba_db_advanced",
@@ -211,7 +211,7 @@
       "genre": "Acción / Beat 'em up",
       "releaseYear": 2004,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8r.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Dragon%20Ball%20-%20Advanced%20Adventure%20(USA).png"
     },
     {
       "id": "gba_dbz_supersonic",
@@ -225,7 +225,7 @@
       "genre": "Lucha",
       "releaseYear": 2004,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8r.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Dragon%20Ball%20Z%20-%20Supersonic%20Warriors%20(USA).png"
     },
     {
       "id": "gba_kirby_mirror",
@@ -239,7 +239,7 @@
       "genre": "Plataformas / Metroidvania",
       "releaseYear": 2004,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7p.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Kirby%20_%20The%20Amazing%20Mirror%20(USA).png"
     },
     {
       "id": "gba_metalslug",
@@ -253,7 +253,7 @@
       "genre": "Run & Gun",
       "releaseYear": 2004,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7o.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Metal%20Slug%20Advance%20(USA).png"
     },
     {
       "id": "gba_sfa3",
@@ -267,7 +267,7 @@
       "genre": "Lucha",
       "releaseYear": 2002,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7f.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Street%20Fighter%20Alpha%203%20(USA).png"
     },
     {
       "id": "gba_warioware",
@@ -281,7 +281,7 @@
       "genre": "Arcade / Party",
       "releaseYear": 2003,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x85.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/WarioWare%2C%20Inc.%20-%20Mega%20Microgame%24!%20(USA).png"
     }
   ]
 }

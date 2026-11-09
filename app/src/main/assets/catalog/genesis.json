@@ -16,7 +16,7 @@
       "genre": "Plataformas",
       "releaseYear": 1992,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7l.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_-_Genesis/master/Named_Boxarts/Sonic%20The%20Hedgehog%202%20(World)%20(Rev%20A).png"
     },
     {
       "id": "gen_sonic1",
@@ -30,7 +30,7 @@
       "genre": "Plataformas",
       "releaseYear": 1991,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7l.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_-_Genesis/master/Named_Boxarts/Sonic%20The%20Hedgehog%20(USA%2C%20Europe).png"
     },
     {
       "id": "gen_sonic3k",
@@ -44,7 +44,7 @@
       "genre": "Plataformas",
       "releaseYear": 1994,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7l.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_-_Genesis/master/Named_Boxarts/Sonic%20_%20Knuckles%20(World).png"
     },
     {
       "id": "gen_sor2",
@@ -58,7 +58,7 @@
       "genre": "Beat 'em up",
       "releaseYear": 1992,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7m.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_-_Genesis/master/Named_Boxarts/Streets%20of%20Rage%202%20(USA).png"
     },
     {
       "id": "gen_sor3",
@@ -72,7 +72,7 @@
       "genre": "Beat 'em up",
       "releaseYear": 1994,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7m.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_-_Genesis/master/Named_Boxarts/Streets%20of%20Rage%203%20(USA).png"
     },
     {
       "id": "gen_umk3",
@@ -86,7 +86,7 @@
       "genre": "Lucha",
       "releaseYear": 1996,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8q.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_-_Genesis/master/Named_Boxarts/Ultimate%20Mortal%20Kombat%203%20(USA).png"
     },
     {
       "id": "gen_sf2ce",
@@ -100,7 +100,7 @@
       "genre": "Lucha",
       "releaseYear": 1993,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7f.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_-_Genesis/master/Named_Boxarts/Street%20Fighter%20II'%20-%20Special%20Champion%20Edition%20(USA).png"
     },
     {
       "id": "gen_gunstar",
@@ -115,7 +115,7 @@
       "genre": "Run & Gun",
       "releaseYear": 1993,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7o.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_-_Genesis/master/Named_Boxarts/Gunstar%20Heroes%20(USA).png"
     },
     {
       "id": "gen_contra_hc",
@@ -129,7 +129,7 @@
       "genre": "Run & Gun",
       "releaseYear": 1994,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7i.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_-_Genesis/master/Named_Boxarts/Contra%20-%20Hard%20Corps%20(USA%2C%20Korea).png"
     },
     {
       "id": "gen_castlevania_bl",
@@ -143,7 +143,7 @@
       "genre": "Acción / Plataformas",
       "releaseYear": 1994,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7j.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_-_Genesis/master/Named_Boxarts/Castlevania%20-%20Bloodlines%20(USA).png"
     },
     {
       "id": "gen_comix_zone",
@@ -157,7 +157,7 @@
       "genre": "Beat 'em up / Acción",
       "releaseYear": 1995,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7m.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_-_Genesis/master/Named_Boxarts/Comix%20Zone%20(USA).png"
     },
     {
       "id": "gen_tmnt_hh",
@@ -171,7 +171,7 @@
       "genre": "Beat 'em up",
       "releaseYear": 1992,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7m.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_-_Genesis/master/Named_Boxarts/Teenage%20Mutant%20Ninja%20Turtles%20-%20The%20Hyperstone%20Heist%20(USA).png"
     },
     {
       "id": "gen_earthworm_jim",
@@ -185,7 +185,7 @@
       "genre": "Acción / Plataformas",
       "releaseYear": 1994,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x83.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_-_Genesis/master/Named_Boxarts/Earthworm%20Jim%20(USA).png"
     },
     {
       "id": "gen_vectorman",
@@ -199,7 +199,7 @@
       "genre": "Run & Gun",
       "releaseYear": 1995,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7o.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_-_Genesis/master/Named_Boxarts/Vectorman%20(USA%2C%20Europe).png"
     },
     {
       "id": "gen_goldenaxe",
@@ -214,7 +214,7 @@
       "genre": "Acción / Fantasía",
       "releaseYear": 1989,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x81.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_-_Genesis/master/Named_Boxarts/Golden%20Axe%20(World).png"
     },
     {
       "id": "gen_shinobi3",
@@ -229,7 +229,7 @@
       "genre": "Acción Ninja",
       "releaseYear": 1993,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x82.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_-_Genesis/master/Named_Boxarts/Shinobi%20III%20-%20Return%20of%20the%20Ninja%20Master%20(USA).png"
     },
     {
       "id": "gen_aladdin",
@@ -244,7 +244,7 @@
       "genre": "Plataformas",
       "releaseYear": 1993,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x83.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_-_Genesis/master/Named_Boxarts/Aladdin%20(USA).png"
     },
     {
       "id": "gen_shining_force2",
@@ -258,7 +258,7 @@
       "genre": "RPG Táctico",
       "releaseYear": 1993,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x81.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_-_Genesis/master/Named_Boxarts/Shining%20Force%20II%20(USA).png"
     }
   ]
 }

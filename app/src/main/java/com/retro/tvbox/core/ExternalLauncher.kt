@@ -132,11 +132,20 @@ object ExternalLauncher {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
             context.startActivity(storeIntent)
-        } catch (e: ActivityNotFoundException) {
-            val webIntent = Intent(Intent.ACTION_VIEW, webUri).apply {
-                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        } catch (e: Exception) {
+            try {
+                val webIntent = Intent(Intent.ACTION_VIEW, webUri).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }
+                context.startActivity(webIntent)
+            } catch (e2: Exception) {
+                Log.w(TAG, "No hay navegador ni Play Store en este Android TV.")
+                android.widget.Toast.makeText(
+                    context,
+                    "Instala AetherSX2 o NetherSX2 manualmente por USB o sideload para jugar PS2.",
+                    android.widget.Toast.LENGTH_LONG
+                ).show()
             }
-            context.startActivity(webIntent)
         }
     }
 }

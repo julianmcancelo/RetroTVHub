@@ -35,6 +35,9 @@ sealed class DownloadProgress {
  * Gestor asíncrono de descargas Play-on-Demand.
  * Descarga archivos de forma transparente, descomprime contenedores ZIP y ubica
  * la ROM limpia en la partición temp_roms de CacheManager.
+ *
+ * Optimizado para descargas resilientes desde archive.org y repositorios cloud:
+ * soporte de redirects automáticos, headers de navegador estándar y reintentos.
  */
 class GameDownloader(
     private val context: Context,
@@ -47,8 +50,10 @@ class GameDownloader(
         OkHttpClient.Builder()
             .followRedirects(true)
             .followSslRedirects(true)
-            .connectTimeout(30, TimeUnit.SECONDS)
-            .readTimeout(60, TimeUnit.SECONDS)
+            .connectTimeout(45, TimeUnit.SECONDS)
+            .readTimeout(90, TimeUnit.SECONDS)
+            .writeTimeout(60, TimeUnit.SECONDS)
+            .retryOnConnectionFailure(true)
             .build()
     }
 
@@ -62,6 +67,7 @@ class GameDownloader(
         val finalTargetRom = cacheManager.getRomFile(game.id, game.expectedExtension)
         if (finalTargetRom.exists()) {
             if (finalTargetRom.length() > 1024) {
+                Log.i(tag, "Juego ya disponible en caché: ${finalTargetRom.absolutePath} (${finalTargetRom.length()} bytes)")
                 cacheManager.markRomAccessed(game.id, finalTargetRom)
                 emit(DownloadProgress.Completed(finalTargetRom))
                 return@flow
@@ -69,11 +75,6 @@ class GameDownloader(
                 // Descartar archivo incompleto o corrupto previo
                 finalTargetRom.delete()
             }
-        }
-
-        // Si la URL es de prueba o protocolo ficticio sin red disponible, generar stub local funcional
-        if (game.fileUrl.startsWith("mock://") || game.fileUrl.contains("archive.org")) {
-            // Permitir intento o generar archivo de prueba para evaluación
         }
 
         val tempDownloadFile = File(cacheManager.tempRomsDir, "${game.id}_download.part").apply {
@@ -84,10 +85,14 @@ class GameDownloader(
         }
 
         try {
+            Log.i(tag, "Iniciando descarga Play-on-Demand para '${game.title}' desde: ${game.fileUrl}")
+
             val request = Request.Builder()
                 .url(game.fileUrl)
-                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; Xbox; Xbox Series X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36")
                 .header("Accept", "*/*")
+                .header("Accept-Encoding", "identity")
+                .header("Connection", "keep-alive")
                 .build()
 
             var downloadedBytes = 0L
@@ -95,10 +100,10 @@ class GameDownloader(
 
             httpClient.newCall(request).execute().use { response ->
                 if (!response.isSuccessful) {
-                    throw IOException("Respuesta del servidor no satisfactoria: ${response.code}")
+                    throw IOException("HTTP ${response.code}: ${response.message}")
                 }
 
-                val body = response.body ?: throw IOException("Cuerpo de respuesta nulo")
+                val body = response.body ?: throw IOException("Cuerpo de respuesta nulo del servidor")
                 val contentLength = body.contentLength()
                 if (contentLength > 0) {
                     totalBytes = contentLength
@@ -107,7 +112,7 @@ class GameDownloader(
                 val inputStream = body.byteStream()
                 val outputStream = FileOutputStream(tempDownloadFile)
 
-                val buffer = ByteArray(64 * 1024) // 64 KB buffer de transferencia
+                val buffer = ByteArray(64 * 1024) // 64 KB buffer de transferencia fluida
                 var bytesRead: Int
                 var lastTime = System.currentTimeMillis()
                 var bytesSinceLastSample = 0L
@@ -120,7 +125,7 @@ class GameDownloader(
 
                     val now = System.currentTimeMillis()
                     val delta = now - lastTime
-                    if (delta >= 500) { // Emitir actualización cada 500ms
+                    if (delta >= 400) { // Emitir actualización cada 400ms para feedback dinámico en TV
                         speed = (bytesSinceLastSample * 1000) / delta
                         lastTime = now
                         bytesSinceLastSample = 0L
@@ -187,10 +192,11 @@ class GameDownloader(
             // Ejecutar revisión preventiva de cuotas
             cacheManager.enforceLRU()
 
+            Log.i(tag, "Descarga e instalación completada exitosamente: ${finalTargetRom.absolutePath}")
             emit(DownloadProgress.Completed(finalTargetRom))
 
         } catch (e: Exception) {
-            Log.e(tag, "Fallo durante la descarga de ${game.title}", e)
+            Log.e(tag, "Fallo durante la descarga de ${game.title}: ${e.message}", e)
             if (tempDownloadFile.exists()) tempDownloadFile.delete()
             if (finalTargetRom.exists() && finalTargetRom.length() <= 1024) finalTargetRom.delete()
             emit(DownloadProgress.Failed(e.message ?: "Error desconocido en descarga"))

@@ -15,7 +15,7 @@
       "genre": "Plataformas",
       "releaseYear": 1988,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7g.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Super%20Mario%20Bros.%203%20(USA).png"
     },
     {
       "id": "nes_smb1",
@@ -29,7 +29,7 @@
       "genre": "Plataformas",
       "releaseYear": 1985,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7g.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Super%20Mario%20Bros.%20%2B%20Duck%20Hunt%20(USA).png"
     },
     {
       "id": "nes_smb2",
@@ -43,7 +43,7 @@
       "genre": "Plataformas",
       "releaseYear": 1988,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7g.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Super%20Mario%20Bros.%202%20(USA).png"
     },
     {
       "id": "nes_contra",
@@ -58,7 +58,7 @@
       "genre": "Acción / Run & Gun",
       "releaseYear": 1988,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7i.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Contra%20(USA).png"
     },
     {
       "id": "nes_superc",
@@ -72,7 +72,7 @@
       "genre": "Run & Gun",
       "releaseYear": 1992,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7i.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Contra%20Force%20(USA).png"
     },
     {
       "id": "nes_zelda1",
@@ -86,7 +86,7 @@
       "genre": "Aventura / Acción",
       "releaseYear": 1986,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7h.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20(USA).png"
     },
     {
       "id": "nes_metroid",
@@ -100,7 +100,7 @@
       "genre": "Acción / Exploración",
       "releaseYear": 1986,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7e.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Metroid%20(USA).png"
     },
     {
       "id": "nes_castlevania",
@@ -114,7 +114,7 @@
       "genre": "Acción / Plataformas",
       "releaseYear": 1986,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7j.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Castlevania%20(USA).png"
     },
     {
       "id": "nes_castlevania3",
@@ -128,7 +128,7 @@
       "genre": "Acción / Plataformas",
       "releaseYear": 1989,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7j.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Castlevania%20III%20-%20Dracula's%20Curse%20(USA).png"
     },
     {
       "id": "nes_megaman2",
@@ -143,7 +143,7 @@
       "genre": "Acción / Plataformas",
       "releaseYear": 1988,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7k.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Mega%20Man%202%20(USA).png"
     },
     {
       "id": "nes_megaman3",
@@ -157,7 +157,7 @@
       "genre": "Acción / Plataformas",
       "releaseYear": 1990,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7k.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Mega%20Man%203%20(USA).png"
     },
     {
       "id": "nes_punchout",
@@ -171,7 +171,7 @@
       "genre": "Deportes / Boxeo",
       "releaseYear": 1987,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7g.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Punch-Out!!%20(USA).png"
     },
     {
       "id": "nes_kirby",
@@ -185,7 +185,7 @@
       "genre": "Plataformas",
       "releaseYear": 1993,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7g.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Kirby's%20Adventure%20(USA).png"
     },
     {
       "id": "nes_ninjagaiden",
@@ -199,7 +199,7 @@
       "genre": "Acción Ninja",
       "releaseYear": 1989,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x82.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Ninja%20Gaiden%20(USA).png"
     },
     {
       "id": "nes_doubledragon2",
@@ -213,7 +213,7 @@
       "genre": "Beat 'em up",
       "releaseYear": 1989,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7m.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Double%20Dragon%20II%20-%20The%20Revenge%20(USA).png"
     },
     {
       "id": "nes_battletoads",
@@ -227,7 +227,7 @@
       "genre": "Beat 'em up / Acción",
       "releaseYear": 1991,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7m.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Battletoads%20(USA).png"
     },
     {
       "id": "nes_pacman",
@@ -241,7 +241,7 @@
       "genre": "Arcade",
       "releaseYear": 1984,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7g.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Pac-Man%20(USA)%20(Namco).png"
     },
     {
       "id": "nes_ducktales",
@@ -255,7 +255,7 @@
       "genre": "Plataformas",
       "releaseYear": 1989,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7y.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/DuckTales%20(USA).png"
     }
   ]
 }

@@ -86,6 +86,12 @@ class RepositoryClient(private val context: Context) {
             }
         } catch (_: Exception) { null }
 
+        // Si la URL es inválida o no empieza con http, recurrir directamente a assets empaquetados
+        if (catalogUrl.isBlank() || !catalogUrl.startsWith("http", ignoreCase = true)) {
+            val fallback = assetCatalog ?: loadAssetCatalogSync(consoleId)
+            return@withContext Result.success(fallback)
+        }
+
         try {
             val request = Request.Builder().url(catalogUrl).build()
             httpClient.newCall(request).execute().use { response ->
@@ -116,7 +122,7 @@ class RepositoryClient(private val context: Context) {
                     Log.e(tag, "Caché de catálogo dañada", e2)
                 }
             }
-            Result.success(createBuiltinCatalog(consoleId))
+            Result.success(loadAssetCatalogSync(consoleId))
         }
     }
 

@@ -15,7 +15,7 @@
       "genre": "Plataformas",
       "releaseYear": 1990,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7d.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/Super%20Mario%20World%20(USA).png"
     },
     {
       "id": "snes_zelda",
@@ -30,7 +30,7 @@
       "genre": "Acción / Aventura",
       "releaseYear": 1991,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7h.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20A%20Link%20to%20the%20Past%20(USA).png"
     },
     {
       "id": "snes_dkc",
@@ -44,7 +44,7 @@
       "genre": "Plataformas",
       "releaseYear": 1994,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1v9x.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/Donkey%20Kong%20Country%20(USA).png"
     },
     {
       "id": "snes_dkc2",
@@ -58,7 +58,7 @@
       "genre": "Plataformas",
       "releaseYear": 1995,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1v9y.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/Donkey%20Kong%20Country%202%20-%20Diddy's%20Kong%20Quest%20(USA)%20(En%2CFr).png"
     },
     {
       "id": "snes_dkc3",
@@ -72,7 +72,7 @@
       "genre": "Plataformas",
       "releaseYear": 1996,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1v9z.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/Donkey%20Kong%20Country%203%20-%20Dixie%20Kong's%20Double%20Trouble!%20(USA)%20(En%2CFr).png"
     },
     {
       "id": "snes_metroid",
@@ -86,7 +86,7 @@
       "genre": "Metroidvania",
       "releaseYear": 1994,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7e.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/Super%20Metroid%20(Japan%2C%20USA)%20(En%2CJa).png"
     },
     {
       "id": "snes_chrono",
@@ -100,7 +100,7 @@
       "genre": "RPG",
       "releaseYear": 1995,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7z.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/Chrono%20Trigger%20(USA).png"
     },
     {
       "id": "snes_ff3",
@@ -114,7 +114,7 @@
       "genre": "JRPG",
       "releaseYear": 1994,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7z.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/Final%20Fantasy%20III%20(USA).png"
     },
     {
       "id": "snes_smrpg",
@@ -128,7 +128,7 @@
       "genre": "RPG",
       "releaseYear": 1996,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7d.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/Super%20Mario%20RPG%20-%20Legend%20of%20the%20Seven%20Stars%20(USA).png"
     },
     {
       "id": "snes_yoshi_island",
@@ -142,7 +142,7 @@
       "genre": "Plataformas",
       "releaseYear": 1995,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7d.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/Super%20Mario%20World%202%20-%20Yoshi's%20Island%20(USA).png"
     },
     {
       "id": "snes_smk",
@@ -156,7 +156,7 @@
       "genre": "Carreras",
       "releaseYear": 1992,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7d.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/Super%20Mario%20Kart%20(USA).png"
     },
     {
       "id": "snes_sf2t",
@@ -170,7 +170,7 @@
       "genre": "Lucha",
       "releaseYear": 1993,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7f.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/Street%20Fighter%20II%20Turbo%20(USA).png"
     },
     {
       "id": "snes_umk3",
@@ -184,7 +184,7 @@
       "genre": "Lucha",
       "releaseYear": 1996,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8q.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/Ultimate%20Mortal%20Kombat%203%20(USA).png"
     },
     {
       "id": "snes_ki",
@@ -198,7 +198,7 @@
       "genre": "Lucha",
       "releaseYear": 1995,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7f.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/Killer%20Instinct%20(USA).png"
     },
     {
       "id": "snes_megamanx",
@@ -212,7 +212,7 @@
       "genre": "Acción / Plataformas",
       "releaseYear": 1993,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x80.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/Mega%20Man%20X%20(USA).png"
     },
     {
       "id": "snes_contra3",
@@ -226,7 +226,7 @@
       "genre": "Run & Gun",
       "releaseYear": 1992,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7i.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/Contra%20III%20-%20The%20Alien%20Wars%20(USA).png"
     },
     {
       "id": "snes_tmnt4",
@@ -240,7 +240,7 @@
       "genre": "Beat 'em up",
       "releaseYear": 1992,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7m.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/Teenage%20Mutant%20Ninja%20Turtles%20IV%20-%20Turtles%20in%20Time%20(USA).png"
     },
     {
       "id": "snes_iss_deluxe",
@@ -254,7 +254,7 @@
       "genre": "Deportes / Fútbol",
       "releaseYear": 1995,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x82.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/International%20Superstar%20Soccer%20Deluxe%20(USA).png"
     },
     {
       "id": "snes_sunset_riders",
@@ -268,7 +268,7 @@
       "genre": "Run & Gun / Western",
       "releaseYear": 1993,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7o.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/Sunset%20Riders%20(USA).png"
     },
     {
       "id": "snes_kirby_superstar",
@@ -282,7 +282,7 @@
       "genre": "Plataformas",
       "releaseYear": 1996,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7d.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/Kirby%20Super%20Star%20(USA).png"
     }
   ]
 }

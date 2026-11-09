@@ -1,7 +1,7 @@
 {
   "consoleId": "psx",
   "consoleName": "SONY PLAYSTATION 1",
-  "count": 35,
+  "count": 36,
   "games": [
     {
       "id": "psx_ctr",
@@ -15,7 +15,7 @@
       "genre": "Carreras",
       "releaseYear": 1999,
       "maxPlayers": 4,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7t.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/CTR%20-%20Crash%20Team%20Racing%20(USA).png"
     },
     {
       "id": "psx_silent_hill",
@@ -29,7 +29,7 @@
       "genre": "Terror Psicológico",
       "releaseYear": 1999,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8a.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Silent%20Hill%20(USA).png"
     },
     {
       "id": "psx_re2",
@@ -43,7 +43,7 @@
       "genre": "Survival Horror",
       "releaseYear": 1998,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8b.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Resident%20Evil%202%20(USA).png"
     },
     {
       "id": "psx_tekken3",
@@ -57,7 +57,7 @@
       "genre": "Lucha 3D",
       "releaseYear": 1998,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x87.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Tekken%203%20(USA).png"
     },
     {
       "id": "psx_gt1",
@@ -71,7 +71,7 @@
       "genre": "Simulación / Carreras",
       "releaseYear": 1997,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8e.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Gran%20Turismo%20(USA).png"
     },
     {
       "id": "psx_gt2",
@@ -85,7 +85,7 @@
       "genre": "Simulación / Carreras",
       "releaseYear": 1999,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co20ac.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Gran%20Turismo%202%20(USA).png"
     },
     {
       "id": "psx_fft",
@@ -99,7 +99,7 @@
       "genre": "RPG Táctico",
       "releaseYear": 1997,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7y.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Final%20Fantasy%20Tactics%20(USA).png"
     },
     {
       "id": "psx_ff6",
@@ -113,7 +113,7 @@
       "genre": "JRPG",
       "releaseYear": 1999,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7z.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Final%20Fantasy%20Anthology%20-%20Final%20Fantasy%20VI%20(USA).png"
     },
     {
       "id": "psx_ff5",
@@ -127,7 +127,7 @@
       "genre": "JRPG",
       "releaseYear": 1999,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co20ad.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Final%20Fantasy%20Anthology%20-%20Final%20Fantasy%20V%20(USA).png"
     },
     {
       "id": "psx_chrono_trigger",
@@ -141,7 +141,7 @@
       "genre": "JRPG",
       "releaseYear": 2001,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x80.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Final%20Fantasy%20Chronicles%20-%20Chrono%20Trigger%20(USA).png"
     },
     {
       "id": "psx_ff_origins",
@@ -155,7 +155,7 @@
       "genre": "JRPG",
       "releaseYear": 2002,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co20ae.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Final%20Fantasy%20Origins%20(USA).png"
     },
     {
       "id": "psx_pepsiman",
@@ -169,7 +169,7 @@
       "genre": "Acción / Runner",
       "releaseYear": 1999,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x81.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Pepsiman%20(Japan).png"
     },
     {
       "id": "psx_we2002",
@@ -183,7 +183,7 @@
       "genre": "Deportes / Fútbol",
       "releaseYear": 2002,
       "maxPlayers": 4,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x82.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/World%20Soccer%20Winning%20Eleven%202002%20(Japan).png"
     },
     {
       "id": "psx_dino_crisis1",
@@ -197,7 +197,7 @@
       "genre": "Survival Horror",
       "releaseYear": 1999,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x83.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Dino%20Crisis%20(USA).png"
     },
     {
       "id": "psx_dino_crisis2",
@@ -211,7 +211,7 @@
       "genre": "Acción / Survival",
       "releaseYear": 2000,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x84.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Dino%20Crisis%202%20(USA).png"
     },
     {
       "id": "psx_mgs_vr",
@@ -225,7 +225,7 @@
       "genre": "Sigilo / Acción",
       "releaseYear": 1999,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x85.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Metal%20Gear%20Solid%20-%20VR%20Missions%20(USA).png"
     },
     {
       "id": "psx_parasite_eve",
@@ -239,7 +239,7 @@
       "genre": "Action RPG / Horror",
       "releaseYear": 1998,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8j.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Parasite%20Eve%20(USA).png"
     },
     {
       "id": "psx_vagrant_story",
@@ -253,7 +253,7 @@
       "genre": "Action RPG",
       "releaseYear": 2000,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8k.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Vagrant%20Story%20(USA).png"
     },
     {
       "id": "psx_driver1",
@@ -267,7 +267,7 @@
       "genre": "Acción / Conducción",
       "releaseYear": 1999,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8l.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Driver%20-%20You%20Are%20the%20Wheelman%20(USA).png"
     },
     {
       "id": "psx_driver2",
@@ -281,7 +281,7 @@
       "genre": "Acción / Mundo Abierto",
       "releaseYear": 2000,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8m.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Driver%202%20(USA)%20(Disc%201).png"
     },
     {
       "id": "psx_moh",
@@ -295,7 +295,7 @@
       "genre": "Shooter Primera Persona",
       "releaseYear": 1999,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8n.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Medal%20of%20Honor%20(USA).png"
     },
     {
       "id": "psx_spiderman",
@@ -309,7 +309,7 @@
       "genre": "Acción / Aventura",
       "releaseYear": 2000,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8o.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Spider-Man%20(USA).png"
     },
     {
       "id": "psx_megaman_x4",
@@ -323,7 +323,7 @@
       "genre": "Acción / Plataformas 2D",
       "releaseYear": 1997,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8p.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Mega%20Man%20X4%20(USA).png"
     },
     {
       "id": "psx_mk_trilogy",
@@ -337,7 +337,7 @@
       "genre": "Lucha 2D",
       "releaseYear": 1996,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8q.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Mortal%20Kombat%20Trilogy%20(USA).png"
     },
     {
       "id": "psx_dbgt_finalbout",
@@ -351,7 +351,7 @@
       "genre": "Lucha 3D",
       "releaseYear": 1997,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8r.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Dragon%20Ball%20GT%20-%20Final%20Bout%20(USA).png"
     },
     {
       "id": "psx_yugioh_fm",
@@ -365,7 +365,7 @@
       "genre": "Estrategia / Cartas",
       "releaseYear": 1999,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8s.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Yu-Gi-Oh!%20Forbidden%20Memories%20(USA).png"
     },
     {
       "id": "psx_crash1",
@@ -379,7 +379,7 @@
       "genre": "Plataformas 3D",
       "releaseYear": 1996,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7s.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Crash%20Bandicoot%20(USA).png"
     },
     {
       "id": "psx_crash2",
@@ -393,7 +393,7 @@
       "genre": "Plataformas 3D",
       "releaseYear": 1997,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8c.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Crash%20Bandicoot%202%20-%20Cortex%20Strikes%20Back%20(USA).png"
     },
     {
       "id": "psx_crash3",
@@ -407,7 +407,7 @@
       "genre": "Plataformas 3D",
       "releaseYear": 1998,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x89.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Crash%20Bandicoot%20-%20Warped%20(USA).png"
     },
     {
       "id": "psx_castlevania_sotn",
@@ -421,7 +421,7 @@
       "genre": "Metroidvania / RPG",
       "releaseYear": 1997,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7u.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Castlevania%20-%20Symphony%20of%20the%20Night%20(USA).png"
     },
     {
       "id": "psx_re3",
@@ -435,7 +435,7 @@
       "genre": "Survival Horror",
       "releaseYear": 1999,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8d.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Resident%20Evil%203%20-%20Nemesis%20(USA).png"
     },
     {
       "id": "psx_spyro",
@@ -449,7 +449,7 @@
       "genre": "Plataformas 3D",
       "releaseYear": 1998,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x88.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Spyro%20the%20Dragon%20(USA).png"
     },
     {
       "id": "psx_thps2",
@@ -463,7 +463,7 @@
       "genre": "Deportes Extremos",
       "releaseYear": 2000,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8f.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Tony%20Hawk's%20Pro%20Skater%202%20(USA).png"
     },
     {
       "id": "psx_mvc",
@@ -477,7 +477,7 @@
       "genre": "Lucha 2D",
       "releaseYear": 1999,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8g.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Marvel%20vs.%20Capcom%20-%20Clash%20of%20Super%20Heroes%20(USA).png"
     },
     {
       "id": "psx_tm2",
@@ -491,7 +491,7 @@
       "genre": "Combate Vehicular",
       "releaseYear": 1996,
       "maxPlayers": 2,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8h.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Twisted%20Metal%202%20(USA).png"
     },
     {
       "id": "psx_tr1",
@@ -505,7 +505,7 @@
       "genre": "Acción / Aventura",
       "releaseYear": 1996,
       "maxPlayers": 1,
-      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8i.jpg"
+      "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Tomb%20Raider%20(USA).png"
     }
   ]
 }

@@ -13,8 +13,8 @@ android {
         applicationId = "com.retro.tvbox"
         minSdk = 26
         targetSdk = 34
-        versionCode = 3
-        versionName = "1.0.2"
+        versionCode = 4
+        versionName = "1.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -22,7 +22,7 @@ android {
         }
 
         ndk {
-            abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a", "x86_64"))
+            abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
         }
 
         externalNativeBuild {

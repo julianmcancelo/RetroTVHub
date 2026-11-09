@@ -12,6 +12,7 @@ import com.retro.tvbox.repository.RepositoryClient
 import com.retro.tvbox.save.MemoryCardManager
 import com.retro.tvbox.save.SaveManager
 import com.retro.tvbox.save.SaveStateService
+import com.retro.tvbox.ui.theme.AppThemeManager
 
 class RetroApplication : Application() {
 
@@ -50,6 +51,8 @@ class RetroApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+
+        AppThemeManager.init(this)
 
         inputRouter = InputRouter.getInstance().apply { initialize(this@RetroApplication) }
         phoneControllerServer = PhoneControllerServer.getInstance(this@RetroApplication).apply { start() }
